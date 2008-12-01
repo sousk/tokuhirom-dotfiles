@@ -1,0 +1,172 @@
+        Emacs-wget USAGE  ($Date: 2005/09/16 03:53:25 $)
+
+Emacs-wget の使用法について解説します。
+
+1. wget コマンド
+
+1.1. M-x wget
+
+     一番基本となるダウンロード用のコマンドです。
+
+     対象ファイルを尋ねるてくるので、ダウンロードしたいファイルの URL を
+     入力して下さい。ダウンロード先は ~/download です。
+
+     ダウンロード先や wget に渡すオプションを一時的に変更したい場合は、
+     数引数 (C-u) を取って M-x wget を呼び出して下さい。
+
+     wget に渡すオプションは long option (-- が最初に付くオプション) の
+     形式で補完する事が出来ます。オプションの区切りに SPACE を使うので、
+     補完には TAB キーを用います。
+
+     古い wget では long option をサポートしていない場合があるので、お使
+     いの wget のバージョンを確かめて下さい。また、補完リストは wget
+     v.1.8.2 の Info をもとに作成したので、wget のバージョンによっては使
+     えないものもあるかと思います。
+
+1.2. M-x wget-web-page
+
+     対象ファイルと、対象ファイルからリンクしているページをダウンロード
+     します。
+
+     数引数 (C-u) を取ると、ダウンロード先と wget に渡すオプションを一時
+     的に変更出来ます。
+
+1.3. M-x wget-quit
+
+     wget を終了させます。複数のダウンロードを行っている場合は、候補の中
+     から選びます。
+
+     wget の終了は *wget* バッファを使う方が簡単です。
+
+
+2. *wget* バッファ
+
+   ダウンロードを開始すると次のようなバッファが出ます。これを *wget* バッ
+   ファと呼びます。*wget* バッファは、現在のダウンロード状況を表示します。
+
+      ==================================================================
+        -- Wget Process ---
+        [ 24%]**         http://www.foo.org/emacs-wget/wget-buffer.txt
+        =*=DOWNLOADED=*= downloaded.jpg
+      ==== *wget* ======== (wget) ======================================
+
+   *wget* バッファでは wget の終了などをする事が出来ます。*wget* バッファ
+   内でのキー・バインドは次の通りです。
+
+     キー    操作
+     ----   ------
+      d      ポイントのある行のダウンロードを中止します。
+      q      *wget* バッファを隠します。
+      Q      全てのダウンロードを中止して、*wget* バッファを消します。
+      g      *wget* バッファの再描画。
+      i	     wget プロセスの情報を更新。
+      n      次の wget プロセスへ。
+      p      前の wget プロセスへ。
+     ----   ------
+
+   wget プロセスの情報は、自動更新されません。更新させたい時は `i' を押
+   して下さい。
+
+
+3. Emacs-w3m (Emacs/W3) との連携
+
+   Emacs-w3m (Emacs/W3) は Emacs 上の Web ブラウザーです。
+
+   Emacs-w3m:
+     http://emacs-w3m.namazu.org/
+
+   Emacs/W3:
+     http://www.cs.indiana.edu/elisp/w3/docs.html
+
+   README.ja の c-1.) にある設定を追加すると Emacs-w3m のダウンロード用
+   のキーを emacs-wget で上書きします。
+
+   例えば、Emacs-w3m で `d' にダウンロード用のコマンドがバインドされてい
+   た場合、README.ja の設定を追加して、リンクの上にポイントを持って行き 
+   `d' を押すと、リンク先ファイルのダウンロードを開始します。
+
+   また、リンクの無い所で `d' を押すと、現在訪れているページのダウンロー
+   ドを開始します。
+
+
+4. カスタマイズ
+
+   カスタマイズ用の変数を解説します。変数名の次行は、デフォールトの変数
+   値です。
+
+4.1. wget-command
+     "wget"
+
+     外部で呼び出す wget コマンドの名前です。
+     PATH が通っていない場合、絶対パスで指定する必要があります。
+
+4.2. wget-download-directory
+     "~/download"
+
+     Emacs-wget のダウンロード先です。
+
+4.3. wget-default-options
+     nil
+
+     Emacs-wget が使うデフォールトのオプションです。
+
+     wget の詳しいオプションは wget の info を参照して下さい。
+
+4.4. wget-web-page-options
+     '("-r" "-L" "-np")
+
+     web ページ全部をダウンロードする時に wget に渡すオプション引数です。
+     wget-web-page-options は、値を明示的に指定しない限り、
+     wget-default-options の値を引き継ぎます。
+
+     wget の詳しいオプションは wget の info を参照して下さい。
+
+4.5. wget-ftp-default-options
+     nil
+
+     FTP からファイルをダウンロードする時に使うオプション引数です。
+
+     nil ならば wget-default-options の値を代わりに使います。
+
+     wget-default-options に追加する形でオプションを設定したい場合は、次
+     のようにします。
+
+       (add-hook 'wget-load-hook
+                 (lambda ()
+	           (setq wget-ftp-default-options
+                         (append wget-default-options '("--passive-ftp")))))
+
+     上の例では、FTP からのダウンロードは --passive-ftp を使うようになり
+     ます。
+
+4.6. wget-hook
+     nil
+
+     wget 関連の関数を呼び出した後に呼ばれる Hook です。
+
+4.7. wget-load-hook
+     nil
+
+     wget.el をロードする時に実行する Hook です。
+
+4.8. wget-process-buffer
+     "*wget*"
+
+     nil を設定すると *wget* バッファを表示しません。
+
+   主要な変数は以上です。細かいオプションを変更したければ、M-x
+   edit-options か M-x customize して下さい。
+
+
+5. USAGE.ja における謝辞
+
+   新谷明彦 <shinya@sonicteam.com> さんにはドキュメントの誤りを指摘して
+   頂きました。
+
+
+
+Local Variables:
+mode: indented-text
+coding: shift_jis-dos
+fill-column: 72
+End:
