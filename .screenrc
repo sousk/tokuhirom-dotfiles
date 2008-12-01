@@ -1,0 +1,71 @@
+# =========================================================================
+# GNU Screen
+#
+# =========================================================================
+escape ^Ta
+vbell off
+autodetach on
+
+defhstatus screen@$HOSTNAME
+msgminwait 0
+
+# hardstatus をタイトルバー/アイコンに表示
+termcapinfo xterm 'hs:ts=\E]0;:fs=\007:ds=\E]0;screen\007'
+termcapinfo kterm 'hs:ts=\E]0;:fs=\007:ds=\E]0;screen\007'
+
+termcapinfo  xterm* LP:hs
+termcapinfo  kterm* LP:G0:hs
+
+startup_message off
+markkeys h=^B:l=^F:$=^E:^U=^Z:^D=^V
+#caption always "%{= wg} %-w%{=bu dr}%n %t%{-}%+w %= %{=b wb}%y/%m/%d(%D) %{=b wm}%c"
+hardstatus alwayslastline "[%02c] %`%-w%{=b bw}%n %t%{-}%+w"
+
+# -------------------------------------------------------------------------
+# EUC のための設定
+#
+# -------------------------------------------------------------------------
+#defcharset B^BIB01
+#defkanji euc
+#termcap kterm* eA=\E(B:
+#terminfo kterm* enacs=\E(B:
+#termcapinfo kterm* KJ=euc
+
+defutf8 on
+
+# -------------------------------------------------------------------------
+# 色を使うための設定 (ansi-pc-color)
+#
+# -------------------------------------------------------------------------
+#termcap  xterm 'AF=\E[3%dm:AB=\E[4%dm'
+#terminfo xterm 'AF=\E[3%p1%dm:AB=\E[4%p1%dm'
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm' 
+termcap  kterm 'AF=\E[3%dm:AB=\E[4%dm'
+terminfo kterm 'AF=\E[3%p1%dm:AB=\E[4%p1%dm'
+
+# -------------------------------------------------------------------------
+# 256色モード
+#
+# -------------------------------------------------------------------------
+#defbce "on"
+#term xterm-256color
+#attrcolor b ".I" 
+
+# -------------------------------------------------------------------------
+# multi user
+#
+# -------------------------------------------------------------------------
+multiuser on
+acladd kan
+acladd atsushi
+aclchg wizard +rwx "#?"
+
+screen -t 'svn' 0
+screen -t 'template' 1
+screen -t 'Pages' 2
+screen -t 'Data' 3
+screen -t 'errorlog' 4
+screen -t 'mysql' 5
+screen -t 'config' 6
+screen -t 'aoki' 7
+
