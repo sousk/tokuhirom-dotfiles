@@ -5,8 +5,10 @@ mkdir ~/src/
 mkdir ~/tmp/
 
 sudo aptitude install -y git-core
-sudo aptitude install -y psmisc python-dev rcs rsync ruby scons skkdic sqlite3 spidermonkey-bin strace subversion sudo swig tcpdump telnet traceroute libpng-dev libjpeg-dev libgif-dev unison unzip zip valgrind wamerican whois zlib1g-dev
-sudo aptitude install -y git-core screen zsh curl w3m wget nkf  autotools-dev gcc binutils-dev bsdutils tree bvi bzr emacs21-nox vim lv cvs ddskk doxygen ncftp lftp gauche-dev gdb gnupg2 graphviz-dev ipython ngrep irb irssi-dev irssi-scripts aspell mecab locate lsof memcached nasm nmap libxml2-dev pkg-config libreadline-dev
+sudo aptitude install -y psmisc python-dev rcs rsync ruby scons sqlite3 spidermonkey-bin strace subversion sudo swig tcpdump telnet traceroute libpng-dev libjpeg-dev libgif-dev unison unzip zip valgrind wamerican whois zlib1g-dev
+sudo aptitude install -y git-core screen zsh curl w3m wget nkf  autotools-dev gcc binutils-dev bsdutils tree bvi bzr emacs21-nox vim lv cvs doxygen ncftp lftp gauche-dev gdb gnupg2 graphviz-dev ipython ngrep irb irssi-dev irssi-scripts aspell mecab locate lsof memcached nasm nmap libxml2-dev pkg-config libreadline-dev
+
+wget http://openlab.jp/skk/skk/dic/SKK-JISYO.L --output-document ~/share/SKK-JISYO.L
 
 git clone git://github.com/tokuhirom/tokuhirom-dotfiles.git ~/share/dotfiles/
 cd ~/share/dotfiles/
@@ -16,6 +18,7 @@ sh apt-install.sh
 
 sudo -H cpan local::lib
 sudo -H rm -rf ~/.cpan/
+
 
 # chsh.
 
