@@ -1,6 +1,9 @@
-mkdir -p ~/share/
-mkdir -p ~/share/cpan/
-mkdir -p ~/dev/
+mkdir ~/share/
+mkdir ~/share/cpan/
+mkdir ~/dev/
+mkdir ~/src/
+mkdir ~/tmp/
+
 
 sudo aptitude install -y git-core
 
@@ -9,4 +12,19 @@ cd ~/share/dotfiles/
 perl setup.pl|sh
 
 sh apt-install.sh
+
+sudo -H cpan local::lib
+sudo -H rm -rf ~/.cpan/
+
+# chsh.
+
+# re-run zsh
+
+cpan -i Bundle::CPAN
+cpan -i Module::Install
+
+# use task-belike-tokuhirom
+cd ~/dev
+git clone git://github.com/tokuhirom/task-belike-tokuhirom.git
+cd task-belike-tokuhirom
 
