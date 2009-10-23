@@ -7,7 +7,7 @@
 # terminal
 #
 # -------------------------------------------------------------------------
-# Ctrl+S ã§ã® stop ã‚’ã‚„ã‚ã‚‹
+# Ctrl+S ¤Ç¤Î stop ¤ò¤ä¤á¤ë
 stty stop undef
 
 if [ "$TERM" = "linux" ] ; then
@@ -15,8 +15,9 @@ if [ "$TERM" = "linux" ] ; then
 else
     export LANG=ja_JP.UTF-8
 fi
-export LV='-Ou8'
+export LV='-Ou8 -c'
 export LC_DATE=C
+# export LC_ALL=C
 
 # -------------------------------------------------------------------------
 # zsh basic settings
@@ -24,17 +25,18 @@ export LC_DATE=C
 # -------------------------------------------------------------------------
 # emacs like keybindings
 bindkey -e
-#å±¥æ­´ãŸã£ã·ã‚Šã§ã€‚
-HISTFILE=$HOME/.zsh-history           # å±¥æ­´ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜ã™ã‚‹
-HISTSIZE=1000                         # ãƒ¡ãƒ¢ãƒªå†…ã®å±¥æ­´ã®æ•°
-SAVEHIST=1000                         # ä¿å­˜ã•ã‚Œã‚‹å±¥æ­´ã®æ•°
-setopt extended_history               # å±¥æ­´ãƒ•ã‚¡ã‚¤ãƒ«ã«æ™‚åˆ»ã‚’è¨˜éŒ²
-setopt share_history                  # å±¥æ­´ã‚’å…¨ç«¯æœ«ã§å…±æœ‰
+#ÍúÎò¤¿¤Ã¤×¤ê¤Ç¡£
+HISTFILE=$HOME/.zsh-history           # ÍúÎò¤ò¥Õ¥¡¥¤¥ë¤ËÊÝÂ¸¤¹¤ë
+HISTSIZE=1000                         # ¥á¥â¥êÆâ¤ÎÍúÎò¤Î¿ô
+SAVEHIST=1000                         # ÊÝÂ¸¤µ¤ì¤ëÍúÎò¤Î¿ô
+setopt extended_history               # ÍúÎò¥Õ¥¡¥¤¥ë¤Ë»þ¹ï¤òµ­Ï¿
+setopt share_history                  # ÍúÎò¤òÁ´Ã¼Ëö¤Ç¶¦Í­
+export HARNESS_COLOR=1 # Test::Harness.
 
 autoload -U compinit
 compinit
 
-export PATH="/home/tokuhiro/bin:/usr/local/bin/:$PATH"
+export PATH="$HOME/bin:/usr/local/bin/:$PATH"
 if [ -e "$HOME/private-bin/" ]
 then
 	export PATH="$PATH:$HOME/private-bin/"
@@ -52,7 +54,7 @@ zstyle ':completion:*:default' menu select=1
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # -------------------------------------------------------------------------
-# ls
+# ls ´Ø·¸
 #
 # -------------------------------------------------------------------------
 if [ "$HOST" = 'skinny.local' ]; then
@@ -66,54 +68,198 @@ alias sl='ls'
 alias la='ls -a'
 alias ll='ls -l'
 alias llh='ls -lh'
+alias ¤Þ¤±='make'
+
+# -------------------------------------------------------------------------
+# ¥×¥í¥ó¥×¥È¤ÎÀßÄê
+#
+# -------------------------------------------------------------------------
+setopt prompt_subst
+
+# ¿§ÀßÄê¤ò´ÊÃ±¤Ë¤¹¤ë¤¿¤á¤Î½Ñ
+autoload colors
+colors
+
+set_prompt() {
+    # ¥À¥à
+    if [ "$TERM" = "dumb" ] ; then
+        export PROMPT='%h %n@%m[%d] %# '
+        export RPROMPT='%D %T'
+    else
+        # see http://zsh.sunsite.dk/Doc/Release/zsh_12.html
+        # see http://www.jmuk.org/diary/2007/10/21/0
+
+        local host_colors md5cmd host_color user_color
+
+        if [ $HOST = 'gp.ath.cx' ];
+        then
+            host_color="%{$fg[blue]%}"
+        else
+            host_color="%{$fg[green]%}"
+        fi
+
+        if [ `whoami` = root ]; then
+            user_color="%{$fg_bold[red]%}"
+        else
+            user_color="%{$fg[yellow]%}"
+        fi
+
+        export PROMPT="$user_color%n%{$reset_color%}%{$fg[green]%}@%{$host_color%}%m%{$reset_color%}%% "
+      	export RPROMPT='%{[33m%}[%(5~,%-2~/.../%2~,%~)] %w %T%{$reset_color%}'
+    fi
+}
+set_prompt
+
+
+# -------------------------------------------------------------------------
+# ¥¨¥Ç¥£¥¿¤È¤«¥Ú¡¼¥¸¥ã¤È¤«
+#
+# -------------------------------------------------------------------------
+export	EDITOR=vim
+alias	vi=vim
+
+function unisync () {
+    unison -batch -times ~/Dropbox/dotfiles ssh://gp.ath.cx//home/tokuhirom/share/dotfiles/
+    unison -batch -times ~/Dropbox/howm ssh://gp.ath.cx//home/tokuhirom/share/howm/
+}
+
+function unisync_local () {
+    unison -batch -times ~/Dropbox/dotfiles ssh://192.168.1.3//home/tokuhirom/share/dotfiles/
+    unison -batch -times ~/Dropbox/howm ssh://192.168.1.3//home/tokuhirom/share/howm/
+}
+
+function random () {
+    perl -le 'use Time::HiRes qw/gettimeofday/;use Digest::MD5 qw/md5_hex/; print md5_hex(rand().gettimeofday())';
+}
+
+export GISTY_DIR=$HOME/project/gists/
+
+if [ -x /usr/bin/keychain ]; then
+    keychain id_rsa
+    . $HOME/.keychain/$HOST-sh
+fi
+
+# =========================================================================
+# followings are settings for some sucky operating systems
+#
+# =========================================================================
+
 # for FreeBSD.
 if [ -e '/usr/local/bin/gls' ]; then
 	alias ls='\gls --color'
 fi
-# function chpwd() { ls } # ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªç§»å‹•æ™‚ã« ls
 
 # -------------------------------------------------------------------------
-# ãƒ—ãƒ­ãƒ³ãƒ—ãƒˆã®è¨­å®š
-#
-# -------------------------------------------------------------------------
-setopt prompt_subst
-# ãƒ€ãƒ 
-if [ "$TERM" = "dumb" ] ; then
-	PROMPT='%h %n@%m[%d] %# '
-	RPROMPT='%D %T'
-else
-	PROMPT='%{[$[32+$RANDOM % 5]m%}%U$HOST'"{`whoami`}%b%%%{[m%}%u "
-	RPROMPT='%{[33m%}[%d] %D %T%{[m%}'
-fi
-
-# -------------------------------------------------------------------------
-# ã‚¨ãƒ‡ã‚£ã‚¿ã¨ã‹ãƒšãƒ¼ã‚¸ãƒ£ã¨ã‹
-#
-# -------------------------------------------------------------------------
-export	EDITOR=vim
-export	PAGER=lv
-alias	vi=vim
+# for osx
 
 export PERL_BADLANG=0
 
+if [ -e "/usr/local/screen_sessions/" ];
+then
+    export SCREENDIR=/usr/local/screen_sessions/
+fi
+
 if [ -e "/opt/local/" ];
 then
-    export PATH="$PATH:/opt/local/bin/:/opt/local/sbin/"
+    export PATH="/opt/local/bin/:/opt/local/sbin/:$PATH"
 fi
 
-if [ -e "/var/lib/gems/1.8/bin" ];
+if [ -e "/usr/X11/bin/" ];
 then
-    export PATH="$PATH:/var/lib/gems/1.8/bin"
+    export PATH="/usr/X11/bin/:$PATH"
 fi
 
-if [ -e "/usr/local/flex2sdk/bin" ];
+function isight () {
+    TMPL=$HOME/share/isight/%Y/%m/%d
+    BASE=`/usr/local/bin/date +$TMPL`
+    FILE=`/usr/local/bin/date +$BASE/%H.%M.%S.jpg`
+    mkdir -p $BASE
+    /usr/local/bin/isightcapture $FILE 
+    open $FILE
+}
+
+function minicpan_get () {
+    perl `which minicpan` -r http://ftp.funet.fi/pub/languages/perl/CPAN/ -l ~/share/minicpan
+}
+
+if [ `pwd` = '/' ];
 then
-    export PATH="$PATH:/usr/local/flex2sdk/bin"
+    cd $HOME
 fi
 
-if [ -e "/usr/local/fcsh/bin" ];
+if [ -e "/opt/local/share/man" ];
 then
-    export PATH="$PATH:/usr/local/fcsh/bin"
+    export MANPATH=/opt/local/share/man:$MANPATH
 fi
 
-export TZ='Asia/Tokyo'
+if [ -d "$HOME/share/cpan/" ]
+then
+    source =(perl -I "$HOME/share/cpan/lib/perl5/" -Mlocal::lib=~/share/cpan/)
+fi
+
+function clone_coderepos {
+    git svn clone -s http://svn.coderepos.org/share/$1
+}
+
+if [ -f ~/.zshrc-secret ];
+then
+    source ~/.zshrc-secret
+fi
+
+function ppport {
+    perl -MDevel::PPPort -e 'Devel::PPPort::WriteFile();'
+}
+function bindpp {
+    perl -MDevel::BindPP -e 'Devel::BindPP::WriteFile();'
+}
+
+function today() {
+    local WORK DATE TODAY
+    WORK=$HOME/tmp
+    DATE=`date +%Y%m%d`
+    TODAY=$WORK/$DATE
+
+    mkdir -p $TODAY
+    cd $TODAY
+}
+function nytprofgp() {
+    nytprofhtml
+    rm -rf ~/public_html/tmp/nytprof
+    mv nytprof ~/public_html/tmp
+    echo "http://gp.ath.cx/~tokuhirom/tmp/nytprof/"
+}
+
+function cpan_update () {
+    perl -MCPAN -e 'CPAN::Shell->install(CPAN::Shell->r)'
+}
+
+
+if [ -d ~/public_html/ ]
+then
+    function nytsetup {
+        nytprofhtml; rm -rf ~/public_html/tmp/nytprof; mv nytprof/ ~/public_html/tmp/
+    }
+fi
+
+function hok_foo () {
+    gdb --args $*
+}
+function hok () {
+    echo "run\nbt" | hok_foo $*
+}
+
+function cpan_upgrade () {
+    perldoc -t perllocal | grep Module | perl -nle '/"Module" (\S+)/ and print $1' | sort -u | xargs cpan
+}
+function perlconf() {
+    perl -e 'use Config; use Data::Dumper; print Dumper(\%Config)'|lv 
+}
+function rfc() {
+    lv "$HOME/share/docs/my-rfc-mirror/rfc$1.txt"
+}
+function git-ignore-elf() {
+    perl -E 'use Path::Class;dir(".")->recurse(callback => sub { return if -f !$_[0] || $_[0] =~ /\.o$/;$f=file($_[0])->openr() or return;$f->read(my $buf, 4); say "$_[0]" if substr($buf,1,3) eq "ELF"; })' >> .gitignore
+}
+function gpath() {
+    ssh gp.ath.cx
+}
