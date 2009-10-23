@@ -4,8 +4,9 @@ mkdir ~/dev/
 mkdir ~/src/
 mkdir ~/tmp/
 
-
 sudo aptitude install -y git-core
+sudo aptitude install -y psmisc python-dev rcs rsync ruby scons skkdic sqlite3 spidermonkey-bin strace subversion sudo swig tcpdump telnet traceroute libpng-dev libjpeg-dev libgif-dev unison unzip zip valgrind wamerican whois zlib1g-dev
+sudo aptitude install -y git-core screen zsh curl w3m wget nkf  autotools-dev gcc binutils-dev bsdutils tree bvi bzr emacs21-nox vim lv cvs ddskk doxygen ncftp lftp gauche-dev gdb gnupg2 graphviz-dev ipython ngrep irb irssi-dev irssi-scripts aspell mecab locate lsof memcached nasm nmap libxml2-dev
 
 git clone git://github.com/tokuhirom/tokuhirom-dotfiles.git ~/share/dotfiles/
 cd ~/share/dotfiles/
@@ -20,11 +21,16 @@ sudo -H rm -rf ~/.cpan/
 
 # re-run zsh
 
-cpan -i Bundle::CPAN
+cpan -i Bundle::CPAN CPAN::SQLite
 cpan -i Module::Install
+cpan> o conf prerequisites_policy follow
+cpan> o conf use_sqlite 1
+cpan> o conf commit
 
 # use task-belike-tokuhirom
 cd ~/dev
 git clone git://github.com/tokuhirom/task-belike-tokuhirom.git
 cd task-belike-tokuhirom
+perl Makefile.PL
+cpan -i .
 
