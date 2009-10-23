@@ -263,3 +263,5 @@ function git-ignore-elf() {
 function gpath() {
     ssh gp.ath.cx
 }
+
+export PERL_AUTOINSTALL="--defaultdeps"
