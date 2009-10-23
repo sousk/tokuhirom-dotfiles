@@ -1,0 +1,5 @@
+#name : install_model ... schema { ... }
+# --
+install_model ${1:model} => schema {
+    ${2:# body...}
+}
