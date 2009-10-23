@@ -1,0 +1,12 @@
+mkdir -p ~/share/
+mkdir -p ~/share/cpan/
+mkdir -p ~/dev/
+
+sudo aptitude install -y git-core
+
+git clone git://github.com/tokuhirom/tokuhirom-dotfiles.git ~/share/dotfiles/
+cd ~/share/dotfiles/
+perl setup.pl|sh
+
+sh apt-install.sh
+
