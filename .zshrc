@@ -135,7 +135,7 @@ function random () {
 export GISTY_DIR=$HOME/project/gists/
 
 if [ -x /usr/bin/keychain ]; then
-    keychain id_rsa
+    keychain --quiet id_rsa
     . $HOME/.keychain/$HOST-sh
 fi
 
