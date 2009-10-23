@@ -30,6 +30,9 @@ br = branch
 co = checkout
 df = diff
 lg = log -p
+dif = diff
+iff = diff
+ad = add
 [user]
 	email = tokuhirom@gmail.com
 [github]
