@@ -1,0 +1,48 @@
+;; -*- lisp -*-
+;; configuration file for stumpwm
+;; written by tokuhirom
+
+(in-package :stumpwm)
+
+;; change window-format
+(setf stumpwm:*window-format* "%n%s%t %c") 
+
+;; Set the default shell
+(setf *shell-program* "/bin/zsh")
+
+;; lock-screen
+(run-shell-command "xscreensaver &")
+(define-stumpwm-command "lock-screen" ()
+  (run-shell-command "xscreensaver-command -lock"))
+
+;; open-terminal
+(define-stumpwm-command "open-terminal" ()
+  (run-shell-command "urxvt"))
+
+;; open-www-browser
+;; (define-stumpwm-command "open-www-browser" ()
+;;   (run-or-raise "/usr/local/mozilla-central/obj-ff/dist/bin/firefox" '(:class "firefox")))
+
+;; emacs
+;; (define-stumpwm-command "emacs" ()
+;;  "Start emacs unless it is already running, in which case focus it."
+;;  (run-or-raise "/usr/local/bin/emacs -T Emacs" '(:class "Emacs")))
+
+;; prefix
+(stumpwm:set-prefix-key (stumpwm:kbd "C-3"))
+
+;; key-bindings
+(define-key *root-map* (kbd "C-e") "emacs")
+(define-key *root-map* (kbd "e") "emacs")
+(define-key *root-map* (kbd "C-c") "open-terminal")
+(define-key *root-map* (kbd "c") "open-terminal")
+(define-key *root-map* (kbd "C-f") "open-www-browser")
+(define-key *root-map* (kbd "f") "open-www-browser")
+(define-key *root-map* (kbd "C-l") "lock-screen")
+
+;; I HATE MOUSE! I HATE MOUSE!
+(run-with-timer 5 5 'banish-pointer)
+
+;; reload this file
+(define-stumpwm-command "init" ()
+  (stumpwm::load-rc-file))

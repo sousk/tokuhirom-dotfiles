@@ -1,0 +1,45 @@
+URxvt.background: Black
+URxvt.foreground: White
+
+/* URxvt.scrollstyle: next */
+URxvt.scrollBar_right: true
+
+/* URxvt.geometry: 80x24 */
+URxvt.termName: rxvt
+
+URxvt.font:\
+    xft:Bitstream Vera Sans Mono:size=14, \
+    xft:Hiragino Maru Gothic Pro, \
+    xft:LiHei Pro, \
+    xft:STHeiti, \
+    xft:Apple Gothic
+URxvt.boldFont:\
+    xft:Bitstream Vera Sans Mono:bold, \
+    xft:Hiragino Maru Gothic Pro:bold, \
+    xft:LiHei Pro:bold, \
+    xft:STHeiti:bold, \
+    xft:Apple Gothic:bold
+URxvt.italicFont:\
+    xft:Bitstream Vera Sans Mono:italic, \
+    xft:Hiragino Maru Gothic Pro:italic, \
+    xft:LiHei Pro:italic, \
+    xft:STHeiti:italic, \
+    xft:Apple Gothic:italic
+URxvt.boldItalicFont:\
+    xft:Bitstream Vera Sans Mono:bold:italic, \
+    xft:Hiragino Maru Gothic Pro:bold:italic, \
+    xft:LiHei Pro:bold:italic, \
+    xft:STHeiti:bold:italic, \
+    xft:Apple Gothic:bold:italic
+
+Emacs*fontSetList: 0,1,2
+Emacs.Fontset-0: -*-fixed-medium-r-normal-*-14-*-*-*-*-*-fontset-14
+Emacs.Fontset-1: -mona-*-medium-r-*-*-16-*-*-*-*-*-fontset-16
+Emacs.Fontset-2: -*-fixed-medium-r-normal-*-24-*-*-*-*-*-fontset-24
+Emacs.Font: fontset-16
+Emacs*useXIM: false
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! NetScape
+*globalTranslations: #override\n\
+			     Ctrl<Key>H: kill-previous-word() \n

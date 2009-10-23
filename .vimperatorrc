@@ -1,0 +1,128 @@
+" tokuhirom's .vimperatorrc
+" for Vimperator 2.0 alpha 2
+
+echo "loading..."
+
+set titlestring=firefox
+
+" minimum css
+noremap ! :set invusermode<CR>
+
+" set mark-a, jump mark-a
+noremap _ ma
+noremap } `a
+
+" emacs like bindings
+" (cmap: command-line)
+" (imap: insert)
+map <C-h> <BackSpace>
+imap <C-f> <Right>
+imap <C-b> <Left>
+imap <C-n> <Down>
+imap <C-p> <Up>
+cmap <C-f> <Right>
+cmap <C-b> <Left>
+cmap <C-n> <Down>
+map  <M-c> <C-v><M-c>
+imap <M-a> <C-v><M-a>
+imap <M-z> <C-v><M-z>
+imap <M-x> <C-v><M-x>
+imap <M-c> <C-v><M-c>
+imap <M-v> <C-v><M-v>
+cmap <M-a> <C-v><M-a>
+cmap <M-z> <C-v><M-z>
+cmap <M-x> <C-v><M-x>
+cmap <M-c> <C-v><M-c>
+cmap <M-v> <C-v><M-v>
+
+" vim in textarea
+" set noinsertmode
+
+" 多めに移動せよ
+noremap j 5j
+noremap k 5k
+
+" f で新規タブ、F で現在のタブに開くように
+noremap f F
+noremap F f
+
+" Options
+set history=1000
+set verbose=9
+set complete=l
+set wildoptions=auto
+set suggestengines=google
+set newtab=all
+set editor=emacsclient
+
+" みため
+colorscheme sweets
+
+" faviconize
+set! browser.tabs.tabMaxWidth=24
+set! browser.tabs.tabMinWidth=24
+
+"""""""""""""""""""""""""""
+" plugins
+
+let g:plugin_loader_roots = "/Users/tokuhirom/project/vimperator-plugins/"
+let g:plugin_loader_plugins = '_libly,walk-input,direct_hb,feeder,multi_requester,feedSomeKeys_2,migemized_find,clock,nextlink,nicontroller'
+
+" map a :hb<CR>
+" map A :hb<Space>
+
+"" feedsomekey
+
+autocmd LocationChange .* :fmapc
+autocmd LocationChange mail\\.google\\.com/mail/ :fmap! -d 4 c / j k n p o u e x s r a # [ ] z ? gi gs gt gd ga gc * !
+autocmd LocationChange reader\\.livedoor\\.com/reader/ :fmap! j k s a p o v c <Space> <S-Space> z b < > Z r q w
+autocmd LocationChange www\\.rememberthemilk\\.com/home/tokuhirom/ :fmap! j k s a p o v c <Space> <S-Space> z b < > Z r t x d
+
+" noscript.js
+map <silent> ,s :noscript toggletemp<CR>
+map <silent> ,S :noscript toggleperm<CR>
+
+"""""""""""""""""""""""""""""
+" short scripts
+
+js <<EOM
+(function () {
+    commands.addUserCommand(
+        ['cpan'],
+        'search modules from cpan',
+        function (args) {
+            var arg = args.string;
+            liberator.open(
+                'http://search.cpan.org/search?mode=all&query=' + encodeURIComponent(arg),
+                liberator.NEW_TAB
+            );
+        }
+    );
+})();
+EOM
+
+" Show feed-button to statusbar
+js <<EOF
+(function(){
+    var feedPanel = document.createElement('statusbarpanel');
+    var feedButton = document.getElementById('feed-button');
+    feedPanel.setAttribute('id','feed-panel-clone');
+    feedPanel.appendChild(feedButton.cloneNode(true));
+    feedButton.parentNode.removeChild(feedButton);
+    document.getElementById('status-bar').insertBefore(feedPanel,document.getElementById('security-button'));
+})();
+EOF
+
+" scrapbook
+js <<EOF
+(function () {
+    commands.addUserCommand(
+        ['sc[rap]'],
+        'scrap this page',
+        function(){
+            sbBrowserOverlay.execCapture(0, null, true , 'urn:scrapbook:root');
+        }
+    );
+})();
+EOF
+

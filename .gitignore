@@ -17,9 +17,15 @@ blib
 META.yml
 Makefile
 blib/
+inc/
 pm_to_blib
 *.so
 tokuhirom.pbxuser
+**/*.elc
+.emacs.d/elisp/*.elc
+.emacs.d/secret/
+.navi2ch/*
+.w3m/
 inc/Module/Install.pm
 inc/Module/Install/Base.pm
 inc/Module/Install/Can.pm
