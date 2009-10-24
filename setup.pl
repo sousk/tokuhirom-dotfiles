@@ -3,27 +3,23 @@ use strict;
 use warnings;
 
 my @files = qw(
-    .zshrc
+    .Xdefaults
     .emacs
     .emacs.d
+    .gdbinit
     .gitconfig
     .gitignore
+    .gtkrc-2.0
     .inputrc
-    .pmsetuprc
-    .navi2ch
-    .irssi
-    .skk-jisyo
-    .vimrc
+    .perltidyrc
     .screenrc
-    .vimperatorrc
-    .howm-menu
     .skkinput
     .stumpwmrc
+    .vim
+    .vimperatorrc
+    .vimrc
     .xinitrc
-    .Xdefaults
-    .gtkrc-2.0
-    .w3m
-    .gdbinit
+    .zshrc
 );
 
 (my $pwd = `pwd`) =~ s/\n//;
