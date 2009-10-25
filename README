@@ -37,3 +37,17 @@ cd task-belike-tokuhirom
 perl Makefile.PL
 cpan -i .
 
+
+OSX
+---
+
+install some native softwares
+- firefox
+- keyremap4macbook
+- aquaskk
+- macports
+
+instal ports
+- git-core +svn
+- wget
+- coreutils
