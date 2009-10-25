@@ -132,7 +132,7 @@ function random () {
     perl -le 'use Time::HiRes qw/gettimeofday/;use Digest::MD5 qw/md5_hex/; print md5_hex(rand().gettimeofday())';
 }
 
-export GISTY_DIR=$HOME/project/gists/
+export GISTY_DIR=$HOME/dev/gists/
 
 if [ -x /usr/bin/keychain ]; then
     keychain --quiet id_rsa
