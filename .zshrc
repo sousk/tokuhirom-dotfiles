@@ -265,3 +265,6 @@ function gpath() {
 }
 
 export PERL_AUTOINSTALL="--defaultdeps"
+function google() {
+    w3m http://google.com
+}

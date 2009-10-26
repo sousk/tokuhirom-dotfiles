@@ -18,18 +18,22 @@ my @files = qw(
     .vim
     .vimperatorrc
     .vimrc
+    .Xmodmap
+    .xsession
     .xinitrc
     .zshrc
 );
 
-(my $pwd = `pwd`) =~ s/\n//;
-for my $foo (@files) {
-    my $src = "$pwd/$foo";
-    my $dst = "$ENV{HOME}/$foo";
-    linkit($src => $dst);
-}
+&main;exit;
 
-linkit("$pwd" => "$ENV{HOME}/share/dotfiles");
+sub main {
+    (my $pwd = `pwd`) =~ s/\n//;
+    for my $foo (@files) {
+        my $src = "$pwd/$foo";
+        my $dst = "$ENV{HOME}/$foo";
+        linkit($src => $dst);
+    }
+}
 
 sub linkit {
     my ($src, $dst) = @_;
