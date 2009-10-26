@@ -39,7 +39,7 @@ cd ~/dev
 git clone git://github.com/tokuhirom/task-belike-tokuhirom.git
 cd task-belike-tokuhirom
 perl Makefile.PL
-...
+perl -e 'use YAML; print "cpan -i " . join " ", keys %{YAML::LoadFile("META.yml")->{requires}}, "\n"'|zsh
 
 Ubuntu specific
 ==============
