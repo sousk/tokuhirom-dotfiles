@@ -41,3 +41,9 @@ cd task-belike-tokuhirom
 perl Makefile.PL
 ...
 
+Ubuntu specific
+==============
+
+if you got "Looking up ..." is slow, try this:
+https://help.ubuntu.com/community/WebBrowsingSlowIPv6IPv4
+
