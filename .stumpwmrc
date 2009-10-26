@@ -22,6 +22,8 @@
 ;; open-www-browser
 ;; (define-stumpwm-command "open-www-browser" ()
 ;;   (run-or-raise "/usr/local/mozilla-central/obj-ff/dist/bin/firefox" '(:class "firefox")))
+(define-stumpwm-command "open-www-browser" ()
+  (run-or-raise "/usr/bin/firefox" '(:class "firefox")))
 
 ;; emacs
 ;; (define-stumpwm-command "emacs" ()
