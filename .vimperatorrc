@@ -1,9 +1,9 @@
 " tokuhirom's .vimperatorrc
-" for Vimperator 2.0 alpha 2
+" for Vimperator 2.1
 
 echo "loading..."
 
-set titlestring=firefox
+set titlestring=firefox...
 
 " minimum css
 noremap ! :set invusermode<CR>
@@ -51,7 +51,7 @@ set history=1000
 set verbose=9
 set complete=l
 set wildoptions=auto
-set suggestengines=google
+" set suggestengines=google
 set newtab=all
 set editor=emacsclient
 
@@ -65,7 +65,7 @@ set! browser.tabs.tabMinWidth=24
 """""""""""""""""""""""""""
 " plugins
 
-let g:plugin_loader_roots = "/Users/tokuhirom/project/vimperator-plugins/"
+let g:plugin_loader_roots = "/home/tokuhirom/dev/vimperator-plugins/"
 let g:plugin_loader_plugins = '_libly,walk-input,direct_hb,feeder,multi_requester,feedSomeKeys_2,migemized_find,clock,nextlink,nicontroller'
 
 " map a :hb<CR>
