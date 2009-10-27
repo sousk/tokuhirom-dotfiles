@@ -48,3 +48,4 @@
 ;; reload this file
 (define-stumpwm-command "init" ()
   (stumpwm::load-rc-file))
+

@@ -38,7 +38,9 @@ sub main {
 sub linkit {
     my ($src, $dst) = @_;
 
-    if (-e $dst) {
+    if (!-e $src) {
+        print "# missing source: $src\n";
+    } elsif (-e $dst) {
         print "# $dst is exists\n";
     } else {
         print "ln -s $src $dst\n";
