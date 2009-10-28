@@ -6,9 +6,9 @@ export XMODIFIERS="@im=skkinput"
 xset +fp /opt/local/share/fonts/monafont/:unscaled
 xset fp rehash
 
-/opt/local/bin/urxvt &
-/opt/local/bin/urxvt &
+# /opt/local/bin/urxvt &
+# /opt/local/bin/urxvt &
 # exec ratpoison
-quartz-wm --only-proxy &
-# exec /usr/local/stumpwm/stumpwm
-exec quartz-wm
+# quartz-wm --only-proxy &
+exec /usr/bin/stumpwm
+# exec quartz-wm

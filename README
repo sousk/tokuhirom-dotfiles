@@ -23,18 +23,45 @@ sudo -H rm -rf ~/.cpan/
 
 # re-run zsh
 
-cpan -i Bundle::CPAN CPAN::SQLite
-cpan -i Module::Install
-cpan> o conf prerequisites_policy follow
-cpan> o conf use_sqlite 1
-cpan> o conf commit
+o conf urllist http://cpan.yahoo.com/
+o conf prerequisites_policy follow
+o conf commit
+install Bundle::CPAN
+install CPAN::SQLite
+o conf use_sqlite 1
+o conf commit
+reload index
+install Module::Install
 
 # use task-belike-tokuhirom
 cd ~/dev
 git clone git://github.com/tokuhirom/task-belike-tokuhirom.git
 cd task-belike-tokuhirom
 perl Makefile.PL
-cpan -i .
+perl -e 'use YAML; print "cpan -i " . join " ", keys %{YAML::LoadFile("META.yml")->{requires}}, "\n"'|zsh
+
+Ubuntu specific
+==============
+
+if you got "Looking up ..." is slow, try this:
+https://help.ubuntu.com/community/WebBrowsingSlowIPv6IPv4
+
+sudo apt-get  build-dep w3m
+sudo aptitude purge kasumi
+
+use ubuntu as X11 Client
+------------------------
+
+sudo aptitude install urxvt
+sudo aptitude install scim-uim uim-skk uim-gtk2.0 uim-xim
+
+remap key
+---------
+check keycode by `xev`.
+
+and edit ~/.Xmodmap such as:
+
+    keycode 33 = grave tilde
 
 OSX
 ---
