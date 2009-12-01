@@ -265,3 +265,8 @@ function gpath() {
 }
 
 export PERL_AUTOINSTALL="--defaultdeps"
+
+function perl-install-from-meta() {
+    perl -e 'use YAML; print "cpan -i " . join " ", keys %{YAML::LoadFile("META.yml")->{requires}}, "\n"'|zsh
+}
+
