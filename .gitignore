@@ -43,3 +43,4 @@ inc/Test/Builder.pm
 inc/Test/Builder/Module.pm
 inc/Test/More.pm
 */perltidy.ERR
+*.swp
