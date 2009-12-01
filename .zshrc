@@ -119,20 +119,20 @@ export	EDITOR=vim
 alias	vi=vim
 
 function unisync () {
-    unison -batch -times ~/Dropbox/dotfiles ssh://gp.ath.cx//home/tokuhirom/share/dotfiles/
-    unison -batch -times ~/Dropbox/howm ssh://gp.ath.cx//home/tokuhirom/share/howm/
+    # unison -batch -times ~/share/dotfiles ssh://gp.ath.cx//home/tokuhirom/share/dotfiles/
+    unison -batch -times ~/share/howm ssh://gp.ath.cx//home/tokuhirom/share/howm/
 }
 
 function unisync_local () {
-    unison -batch -times ~/Dropbox/dotfiles ssh://192.168.1.3//home/tokuhirom/share/dotfiles/
-    unison -batch -times ~/Dropbox/howm ssh://192.168.1.3//home/tokuhirom/share/howm/
+    # unison -batch -times ~/share/dotfiles ssh://192.168.1.3//home/tokuhirom/share/dotfiles/
+    unison -batch -times ~/share/howm ssh://192.168.1.3//home/tokuhirom/share/howm/
 }
 
 function random () {
     perl -le 'use Time::HiRes qw/gettimeofday/;use Digest::MD5 qw/md5_hex/; print md5_hex(rand().gettimeofday())';
 }
 
-export GISTY_DIR=$HOME/project/gists/
+export GISTY_DIR=$HOME/dev/gists/
 
 if [ -x /usr/bin/keychain ]; then
     keychain --quiet id_rsa
@@ -270,3 +270,6 @@ function perl-install-from-meta() {
     perl -e 'use YAML; print "cpan -i " . join " ", keys %{YAML::LoadFile("META.yml")->{requires}}, "\n"'|zsh
 }
 
+function google() {
+    w3m http://google.com
+}
