@@ -273,3 +273,5 @@ function perl-install-from-meta() {
 function google() {
     w3m http://google.com
 }
+
+function httpstatus() {perl -MHTTP::Status -e '$x=shift;print "$x ".status_message($x),$/' $*}
