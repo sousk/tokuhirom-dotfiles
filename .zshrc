@@ -36,7 +36,7 @@ export HARNESS_COLOR=1 # Test::Harness.
 autoload -U compinit
 compinit
 
-export PATH="$HOME/bin:/usr/local/bin/:$PATH"
+export PATH="$HOME/local/bin/:$HOME/bin:/usr/local/bin/:$PATH"
 if [ -e "$HOME/private-bin/" ]
 then
 	export PATH="$PATH:$HOME/private-bin/"
