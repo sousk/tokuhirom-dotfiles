@@ -4,6 +4,11 @@
 #
 # $0 <service name>
 #
+# $ cd /service/
+# $ sudo ./addsv.sh new-service
+# edit .new-service/run...
+# $ sudo mv -i .new-service new-service
+# $ sudo svstat ./new-service
 
 PATH=/bin:/usr/bin:/sbin:/usr/sbin
 export PATH
@@ -54,11 +59,12 @@ chown ${acct_name}:${acct_group} ${svdir}/.${svname}/log/status
 cat <<EOS > ${svdir}/.${svname}/run
 #!/bin/sh
 
-PATH=/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin
+PATH=/command:/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin
 export PATH
 
 exec 2>&1
-sleep 3
+exec /command/setuidgid ${acct_name} \
+    sleep 3
 
 EOS
 chmod +x ${svdir}/.${svname}/run
@@ -66,7 +72,7 @@ chmod +x ${svdir}/.${svname}/run
 
 cat <<EOS > ${svdir}/.${svname}/log/run
 #!/bin/sh
-exec setuidgid ${acct_name} multilog t s1000000 n100 ./main
+exec /command/setuidgid ${acct_name} multilog t s1000000 n100 ./main
 EOS
 
 chmod +x ${svdir}/.${svname}/log/run
