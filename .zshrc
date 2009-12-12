@@ -275,3 +275,10 @@ function google() {
 }
 
 function httpstatus() {perl -MHTTP::Status -e '$x=shift;print "$x ".status_message($x),$/' $*}
+function daemonstat() {
+    sudo perl -e '$prefix = -d "/command/" ? "/command/" : "";for (</service/*>) { $_=`${prefix}svstat $_`;s!/service/(.+?): (.+?\) )(\d+) seconds!sprintf "%-10s %-15s %3ddays %02d:%02d:%02d $3", $1, $2, $3/60/60/24,($3/60/60)%24, ($3/60)%60, $3%60!e;print }'
+}
+# ~/dev/ 以下を最新にする
+function pullall() {
+    perl -e 'for (<~/dev/*>) { next unless -d "$_/.git/"; chdir $_; system q/git fetch/ }'
+}
