@@ -36,16 +36,24 @@ export HARNESS_COLOR=1 # Test::Harness.
 autoload -U compinit
 compinit
 
-export PATH="$HOME/local/bin/:$HOME/bin:/usr/local/bin/:$PATH"
+export PATH="/usr/local/bin/:$PATH"
+if [ -e "/opt/local/" ];
+then
+    export PATH="/opt/local/bin/:/opt/local/sbin/:$PATH"
+fi
 if [ -e "$HOME/share/dotfiles/local/bin/" ]
 then
 	export PATH="$PATH:$HOME/share/dotfiles/local/bin/"
 fi
-export PATH="$HOME/local/bin/:$HOME/bin:/usr/local/bin/:$PATH"
 if [ -e "$HOME/private-bin/" ]
 then
 	export PATH="$PATH:$HOME/private-bin/"
 fi
+if [ -e "/usr/local/mysql/bin/" ]
+then
+	export PATH="/usr/local/mysql/bin/:$PATH"
+fi
+export PATH="$HOME/bin:$HOME/local/bin/:/usr/local/bin/:$PATH"
 
 setopt autopushd print_eight_bit
 setopt auto_menu auto_cd correct auto_name_dirs auto_remove_slash
@@ -162,11 +170,6 @@ export PERL_BADLANG=0
 if [ -e "/usr/local/screen_sessions/" ];
 then
     export SCREENDIR=/usr/local/screen_sessions/
-fi
-
-if [ -e "/opt/local/" ];
-then
-    export PATH="/opt/local/bin/:/opt/local/sbin/:$PATH"
 fi
 
 if [ -e "/usr/X11/bin/" ];
