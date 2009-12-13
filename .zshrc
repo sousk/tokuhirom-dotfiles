@@ -37,6 +37,11 @@ autoload -U compinit
 compinit
 
 export PATH="$HOME/local/bin/:$HOME/bin:/usr/local/bin/:$PATH"
+if [ -e "$HOME/share/dotfiles/local/bin/" ]
+then
+	export PATH="$PATH:$HOME/share/dotfiles/local/bin/"
+fi
+export PATH="$HOME/local/bin/:$HOME/bin:/usr/local/bin/:$PATH"
 if [ -e "$HOME/private-bin/" ]
 then
 	export PATH="$PATH:$HOME/private-bin/"
