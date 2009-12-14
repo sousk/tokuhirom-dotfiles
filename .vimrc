@@ -55,6 +55,7 @@
 " -------------------------------------------------------------------------
     augroup filetypedetect
     autocmd! BufNewFile,BufRead *.t setf perl
+    autocmd! BufNewFile,BufRead *.psgi setf perl
     augroup END
 
 " -------------------------------------------------------------------
