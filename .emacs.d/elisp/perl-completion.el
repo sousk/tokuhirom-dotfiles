@@ -224,17 +224,6 @@
 
 
 
-;; Version 1.12
-;; remove current directory in @INC.
-;; fixed functions are,
-;; `plcmp--installed-modules-asynchronously'
-;; `plcmp--installed-modules-synchronously'
-;; Note, Version 1.11 is not work correctly.
-
-;; Version 1.11
-;; fix `plcmp-get-installed-modules'
-
-
 ;;;code:
 (require 'cl)
 (require 'anything) ; perl-completion.el uses `anything-aif' macro.
@@ -361,7 +350,7 @@ directory is added to PERL5LIB when invoke completion commands."
 
 
 ;;; variables
-(defvar plcmp-version 1.11)
+(defvar plcmp-version 1.10)
 
 (defvar plcmp-default-lighter  " PLCompletion")
 
@@ -458,7 +447,7 @@ directory is added to PERL5LIB when invoke completion commands."
 
       ;; other
       (define-key map (kbd "C-c c") 'plcmp-cmd-clear-all-caches)
-      ;; (define-key map (kbd "C-c C-f") 'plcmp-cmd-project-files)
+      (define-key map (kbd "C-c C-f") 'plcmp-cmd-project-files)
       (define-key map (kbd "C-c C-c s") 'plcmp-cmd-show-environment)
       (define-key map (kbd "C-c C-c u") 'plcmp-cmd-update-check)
       (define-key map (kbd "C-c C-c d") 'plcmp-cmd-set-additional-lib-directory))
@@ -713,7 +702,7 @@ then execute BODY"
   (message "fetching installed modules...")
   (let* ((modules-str (shell-command-to-string
                        (concat
-                        "find `perl -e 'print join(q{ }, grep(!/^\.$/, @INC));'`"
+                        "find `perl -e 'pop @INC; print join(q{ }, @INC);'`"
                         " -name '*.pm' -type f "
                         "| xargs egrep -h -o 'package [a-zA-Z0-9:]+;' "
                         "| perl -nle 's/package\s+(.+);/$1/; print' "
@@ -752,7 +741,7 @@ then execute BODY"
       (with-current-buffer (get-buffer-create plcmp-installed-modules-buffer-name)
         (erase-buffer))
       (let* ((command "find")
-             (args (concat "`perl -e 'print join(q{ }, grep(!/^\.$/, @INC));'`"
+             (args (concat "`perl -e 'pop @INC; print join(q{ }, @INC);'`"
                            " -name '*.pm' -type f "
                            "| xargs grep -E -h -o 'package [a-zA-Z0-9:]+;' "
                            "| perl -nle 's/package\s+(.+);/$1/; print' "
