@@ -293,3 +293,4 @@ function devfetch() {
 function devcheck() {
     perl -MFile::Basename=basename -e 'for (<~/dev/*>) { next unless -d "$_/.git/"; chdir $_; $x =  `git status 2> /dev/null`; $b=basename($_);print "$b: Changed\n" if $x=~/Changed/; print  "$b: $1\n" if $x=~/(Your branch is ahead of .+\.)/; }'
 }
+alias e="emacsclient -t"
