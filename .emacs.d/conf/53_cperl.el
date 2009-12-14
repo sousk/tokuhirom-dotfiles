@@ -19,6 +19,8 @@
 	       (define-key cperl-mode-map "\M-."  'cperl-find-module)
 	       (define-key cperl-mode-map "\C-ct" 'perltidy-region)
 	       (define-key cperl-mode-map "\C-m"  'newline-and-indent)
+	       (define-key plcmp-mode-map (kbd "C-c C-f") 'anything-project)
+
 	       (setq cperl-auto-newline nil)
 	       ;; Use 4 space indents via cperl mode
 	       (setq cperl-close-paren-offset -4)

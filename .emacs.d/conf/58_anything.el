@@ -12,6 +12,8 @@
 (define-key anything-map (kbd "<tab>")   'anything-next-line)
 (define-key anything-map (kbd "S-<tab>")   'anything-previous-line)
 
+(require 'anything-match-plugin)
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; anything-project
 (require 'anything-project)
@@ -20,5 +22,5 @@
  :name 'perl
  :look-for '("Makefile.PL" "Build.PL")
  :include-regexp '("\\.pm$" "\\.t$" "\\.pl$" "\\.PL$" "\\.js$")
- ;; :exclude-regexp '("/tmp" "/blib") ; can be regexp or list of regexp
+ :exclude-regexp '("/tmp" "/blib") ; can be regexp or list of regexp
  )
