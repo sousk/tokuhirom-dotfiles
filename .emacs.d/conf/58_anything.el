@@ -22,5 +22,6 @@
  :name 'perl
  :look-for '("Makefile.PL" "Build.PL")
  :include-regexp '("\\.pm$" "\\.t$" "\\.pl$" "\\.PL$" "\\.js$")
- :exclude-regexp '("/tmp" "/blib") ; can be regexp or list of regexp
+ :exclude-regexp '("/inc/" "/tmp" "/blib") ; can be regexp or list of regexp
  )
+(setq ap:projects nil)

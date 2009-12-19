@@ -200,10 +200,10 @@ then
     export MANPATH=/opt/local/share/man:$MANPATH
 fi
 
-if [ -d "$HOME/share/cpan/" ]
-then
-    source =(perl -I "$HOME/share/cpan/lib/perl5/" -Mlocal::lib=~/share/cpan/)
-fi
+# if [ -d "$HOME/share/cpan/" ]
+# then
+    # source =(perl -I "$HOME/share/cpan/lib/perl5/" -Mlocal::lib=~/share/cpan/)
+# fi
 
 function clone_coderepos {
     git svn clone -s http://svn.coderepos.org/share/$1
@@ -294,3 +294,9 @@ function devcheck() {
     perl -MFile::Basename=basename -e 'for (<~/dev/*>) { next unless -d "$_/.git/"; chdir $_; $x =  `git status 2> /dev/null`; $b=basename($_);print "$b: Changed\n" if $x=~/Changed/; print  "$b: $1\n" if $x=~/(Your branch is ahead of .+\.)/; }'
 }
 alias e="emacsclient -t"
+alias v="vim"
+alias u="cd ../"
+alias uu="cd ../../"
+alias uuu="cd ../../../"
+alias uuuu="cd ../../../../"
+

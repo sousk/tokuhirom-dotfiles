@@ -9,6 +9,7 @@ xset fp rehash
 # /opt/local/bin/urxvt &
 # /opt/local/bin/urxvt &
 # exec ratpoison
+exec stumpwm
 # quartz-wm --only-proxy &
-exec /usr/bin/stumpwm
+# exec /usr/bin/stumpwm
 # exec quartz-wm

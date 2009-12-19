@@ -55,8 +55,10 @@ set wildoptions=auto
 set newtab=all
 set editor=emacsclient
 
+set verbose=15
+
 " みため
-colorscheme sweets
+" colorscheme sweets
 
 " faviconize
 set! browser.tabs.tabMaxWidth=24
@@ -66,7 +68,7 @@ set! browser.tabs.tabMinWidth=24
 " plugins
 
 let g:plugin_loader_roots = "/home/tokuhirom/dev/vimperator-plugins/"
-let g:plugin_loader_plugins = '_libly,walk-input,direct_hb,feeder,multi_requester,feedSomeKeys_2,migemized_find,clock,nextlink,nicontroller'
+let g:plugin_loader_plugins = '_libly,walk-input,direct_hb,feeder,multi_requester,feedSomeKeys_2,clock,nextlink,nicontroller'
 
 " map a :hb<CR>
 " map A :hb<Space>

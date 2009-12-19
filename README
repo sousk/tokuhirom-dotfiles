@@ -6,9 +6,9 @@ mkdir ~/tmp/
 mkdir ~/local/
 ln -s `pwd`/local/bin ~/local/bin
 
-sudo aptitude install -y git-core
 sudo aptitude install -y psmisc python-dev rcs rsync ruby scons sqlite3 spidermonkey-bin strace subversion sudo swig tcpdump telnet traceroute libpng-dev libjpeg-dev libgif-dev unison unzip zip valgrind wamerican whois zlib1g-dev
-sudo aptitude install -y git-core screen zsh curl w3m wget nkf  autotools-dev gcc binutils-dev bsdutils tree bvi bzr emacs21-nox vim lv cvs doxygen ncftp lftp gauche-dev gdb gnupg2 graphviz-dev ipython ngrep irb irssi-dev irssi-scripts aspell mecab locate lsof memcached nasm nmap libxml2-dev pkg-config libreadline-dev make
+sudo aptitude install -y git-core screen zsh curl w3m wget nkf  autotools-dev gcc binutils-dev bsdutils tree bvi emacs23-nox vim lv doxygen ncftp lftp gdb gnupg2 ipython ngrep irb irssi-dev irssi-scripts aspell mecab locate lsof memcached nasm nmap libxml2-dev pkg-config libreadline-dev make munin
+sudo aptitude install bzr cvs gauche-dev graphviz-dev rubygems ruby-full mutt libruby-json
 
 wget http://openlab.jp/skk/skk/dic/SKK-JISYO.L --output-document ~/share/SKK-JISYO.L
 
@@ -41,6 +41,8 @@ git clone git://github.com/tokuhirom/task-belike-tokuhirom.git
 cd task-belike-tokuhirom
 perl Makefile.PL
 perl -e 'use YAML; print "cpan -i " . join " ", keys %{YAML::LoadFile("META.yml")->{requires}}, "\n"'|zsh
+
+sudo ln -s /etc/service/ /servic
 
 Ubuntu specific
 ==============
@@ -78,3 +80,7 @@ instal ports
 - git-core +svn
 - wget
 - coreutils
+
+nginx
+---
+wget http://nginx.org/download/nginx-0.8.30.tar.gz
