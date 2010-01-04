@@ -27,6 +27,7 @@ sudo -H rm -rf ~/.cpan/
 
 o conf urllist http://cpan.yahoo.com/
 o conf prerequisites_policy follow
+o conf build_requires_install_policy yes
 o conf commit
 install Bundle::CPAN
 install CPAN::SQLite
@@ -42,7 +43,7 @@ cd task-belike-tokuhirom
 perl Makefile.PL
 perl -e 'use YAML; print "cpan -i " . join " ", keys %{YAML::LoadFile("META.yml")->{requires}}, "\n"'|zsh
 
-sudo ln -s /etc/service/ /servic
+sudo ln -s /etc/service/ /service
 
 Ubuntu specific
 ==============
@@ -81,6 +82,13 @@ instal ports
 - wget
 - coreutils
 
-nginx
----
-wget http://nginx.org/download/nginx-0.8.30.tar.gz
+tig/wig
+==========
+
+sudo aptitude install rubygems libopenssl-ruby libjson-ruby
+
+client linux
+=============
+
+    xorg
+    sudo aptitude install uim-xim uim-fep stumpwml
