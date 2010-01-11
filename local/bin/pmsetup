@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/local/bin/perl
 
 use strict;
 use warnings;
@@ -35,8 +35,6 @@ sub write_plugin_files {
 
     mkdir $dist, 0777;
     chdir $dist;
-    mkdir $_, 0777 for (qw/ trunk tags branches /);
-    chdir 'trunk';
 
     my @template = YAML::Load(join '', <DATA>);
     my $vars = { module => $module, dist => $dist, path => $path,
