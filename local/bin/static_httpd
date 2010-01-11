@@ -14,7 +14,7 @@ GetOptions(
 pod2usage(1) if $help;
 
 my $root = shift or pod2usage();
-my $app = Plack::App::Directory->new({root => $root});
+my $app = Plack::App::Directory->new({root => $root})->to_app;
 Plack::Loader->load('Standalone::Prefork', port => $port)->run($app);
 
 __END__
