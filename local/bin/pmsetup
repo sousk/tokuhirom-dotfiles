@@ -214,6 +214,7 @@ template: |
 ---
 file: MANIFEST.SKIP
 template: |
+  ^\.git/
   \bRCS\b
   \bCVS\b
   ^MANIFEST\.
@@ -268,4 +269,9 @@ file: .shipit
 chmod: 0644
 template: |
   steps = FindVersion, ChangeVersion, CheckChangeLog, DistTest, Commit, Tag, MakeDist, UploadCPAN
-  svk.tagpattern = release-%v
+---
+file: .gitignore
+chmod: 0644
+template: |
+  Makefile
+  inc/
