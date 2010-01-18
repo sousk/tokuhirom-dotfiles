@@ -53,6 +53,10 @@ if [ -e "/usr/local/mysql/bin/" ]
 then
 	export PATH="/usr/local/mysql/bin/:$PATH"
 fi
+if [ -e "/usr/local/app/perl/bin/" ]
+then
+	export PATH="/usr/local/app/perl/bin/:$PATH"
+fi
 export PATH="$HOME/bin:$HOME/local/bin/:/usr/local/bin/:$PATH"
 
 setopt autopushd print_eight_bit
@@ -65,6 +69,10 @@ unsetopt promptcr
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*:default' menu select=1
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+# URL の自動クォート
+autoload -U url-quote-magic
+zle -N self-insert url-quote-magic
 
 # -------------------------------------------------------------------------
 # ls 関係
@@ -300,3 +308,6 @@ alias uu="cd ../../"
 alias uuu="cd ../../../"
 alias uuuu="cd ../../../../"
 
+function totalprocsize() {
+    sudo perl -le 'for (@ARGV){open F,"</proc/$_/smaps" or die $!;map{/^Pss:\s*(\d+)/i and $s+=$1}<F>}printf "%.1f[MB]\n", ($s/1024.0)' `pgrep -f $1`
+}
