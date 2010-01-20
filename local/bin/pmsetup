@@ -269,6 +269,7 @@ file: .shipit
 chmod: 0644
 template: |
   steps = FindVersion, ChangeVersion, CheckChangeLog, DistTest, Commit, Tag, MakeDist, UploadCPAN
+  git.push_to=origin
 ---
 file: .gitignore
 chmod: 0644
