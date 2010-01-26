@@ -82,7 +82,7 @@
 
 ;;; text-mode
 (progn
-  (setq-default fill-column 80)
+  ;; (setq-default fill-column 80)
   (setq text-mode-hook 'turn-on-auto-fill)
   (setq default-major-mode 'text-mode)
   (auto-fill-mode))
