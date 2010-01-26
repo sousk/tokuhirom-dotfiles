@@ -311,3 +311,10 @@ alias uuuu="cd ../../../../"
 function totalprocsize() {
     sudo perl -le 'for (@ARGV){open F,"</proc/$_/smaps" or die $!;map{/^Pss:\s*(\d+)/i and $s+=$1}<F>}printf "%.1f[MB]\n", ($s/1024.0)' `pgrep -f $1`
 }
+function alc() {
+    if [ $# != 0 ]; then
+        w3m "http://eow.alc.co.jp/$*/UTF-8/?ref=sa" | less +38
+    else
+        echo 'usage: alc word'
+    fi
+}
