@@ -240,9 +240,9 @@ function today() {
 }
 function nytprofgp() {
     nytprofhtml
-    rm -rf ~/public_html/tmp/nytprof
-    mv nytprof ~/public_html/tmp
-    echo "http://gp.ath.cx/~tokuhirom/tmp/nytprof/"
+    rm -rf rm -rf /usr/local/webapp/tmp/tmp/nytprof
+    mv nytprof /usr/local/webapp/tmp/tmp/
+    echo "http://64p.org/tmp/nytprof/index.html"
 }
 
 function cpan_update () {
