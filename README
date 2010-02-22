@@ -15,33 +15,28 @@ wget http://openlab.jp/skk/skk/dic/SKK-JISYO.L --output-document ~/share/SKK-JIS
 cd ~/share/
 git clone git://github.com/tokuhirom/tokuhirom-dotfiles.git dotfiles
 cd dotfiles/
-perl setup.pl|sh
+perl link.pl|sh
 
-sudo -H cpan local::lib
-sudo -H rm -rf ~/.cpan/
-
+wget http://bit.ly/cpanm
+chmod +x cpanm
+sudo cp cpanm /usr/local/bin/
 
 # chsh.
 
+sudo mkdir /usr/local/app
+sudo chown tokuhirom /usr/local/app
+
 # re-run zsh
 
-o conf urllist http://cpan.yahoo.com/
-o conf prerequisites_policy follow
-o conf build_requires_install_policy yes
-o conf commit
-install Bundle::CPAN
-install CPAN::SQLite
-o conf use_sqlite 1
-o conf commit
-reload index
-install Module::Install
+cd ~/local/
+git clone git://github.com/tokuhirom/myport.git
 
 # use task-belike-tokuhirom
 cd ~/dev
 git clone git://github.com/tokuhirom/task-belike-tokuhirom.git
 cd task-belike-tokuhirom
 perl Makefile.PL
-perl -e 'use YAML; print "cpan -i " . join " ", keys %{YAML::LoadFile("META.yml")->{requires}}, "\n"'|zsh
+perl -e 'use YAML::Tiny qw/LoadFile/; print "cpanm " . join " ", keys %{LoadFile("META.yml")->{requires}}, "\n"'
 
 sudo ln -s /etc/service/ /service
 
