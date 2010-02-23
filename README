@@ -40,6 +40,8 @@ perl -e 'use YAML::Tiny qw/LoadFile/; print "cpanm " . join " ", keys %{LoadFile
 
 sudo ln -s /etc/service/ /service
 
+cpanm github:tokuhirom/oreore-repl.pm
+
 Ubuntu specific
 ==============
 
