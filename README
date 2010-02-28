@@ -3,7 +3,6 @@ mkdir ~/dev/
 mkdir ~/src/
 mkdir ~/tmp/
 mkdir ~/local/
-ln -s `pwd`/local/bin ~/local/bin
 
 sudo aptitude install -y psmisc python-dev rcs rsync ruby scons sqlite3 spidermonkey-bin strace subversion sudo swig tcpdump telnet traceroute libpng-dev libjpeg-dev libgif-dev unison unzip zip valgrind wamerican whois zlib1g-dev
 sudo aptitude install -y git-core screen zsh curl w3m wget nkf  autotools-dev gcc binutils-dev bsdutils tree bvi emacs23-nox vim lv doxygen ncftp lftp gdb gnupg2 ipython ngrep irb irssi-dev irssi-scripts aspell mecab locate lsof memcached nasm nmap libxml2-dev pkg-config libreadline-dev make munin
