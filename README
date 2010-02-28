@@ -42,6 +42,8 @@ sudo ln -s /etc/service/ /service
 
 cpanm http://github.com/tokuhirom/oreore-repl.pm/tarball/master
 cpanm http://github.com/tokuhirom/toktools/tarball/master
+cpanm http://github.com/tokuhirom/pmsetup/tarball/master
+cpanm cpan-upload-http
 
 # some optional modules
 sudo aptitude install -y psmisc python-dev rsync ruby scons sqlite3 spidermonkey-bin strace subversion sudo telnet traceroute libpng-dev libjpeg-dev libgif-dev unison zip valgrind wamerican whois zlib1g-dev
