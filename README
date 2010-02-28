@@ -4,9 +4,7 @@ mkdir ~/src/
 mkdir ~/tmp/
 mkdir ~/local/
 
-sudo aptitude install -y psmisc python-dev rcs rsync ruby scons sqlite3 spidermonkey-bin strace subversion sudo swig tcpdump telnet traceroute libpng-dev libjpeg-dev libgif-dev unison unzip zip valgrind wamerican whois zlib1g-dev
-sudo aptitude install -y git-core screen zsh curl w3m wget nkf  autotools-dev gcc binutils-dev bsdutils tree bvi emacs23-nox vim lv doxygen ncftp lftp gdb gnupg2 ipython ngrep irb irssi-dev irssi-scripts aspell mecab locate lsof memcached nasm nmap libxml2-dev pkg-config libreadline-dev make munin
-sudo aptitude install bzr cvs gauche-dev graphviz-dev rubygems ruby-full mutt libruby-json
+sudo aptitude install -y git-core screen zsh wget unzip nkf w3m gcc binutils-dev bsdutils tree bvi lv libxml2-dev make
 
 wget http://openlab.jp/skk/skk/dic/SKK-JISYO.L --output-document ~/share/SKK-JISYO.L
 
@@ -17,7 +15,11 @@ perl link.pl|sh
 
 wget http://bit.ly/cpanm
 chmod +x cpanm
-sudo cp cpanm /usr/local/bin/
+# perl cpanm --sudo local::lib
+# perl -Mlocal::lib >> ~/.zshrc-secret
+# # re-login
+perl cpanm Module::Install
+perl cpanm App::cpanminus
 
 # chsh.
 
@@ -38,7 +40,13 @@ cpanm --installdeps .
 
 sudo ln -s /etc/service/ /service
 
-cpanm github:tokuhirom/oreore-repl.pm
+cpanm http://github.com/tokuhirom/oreore-repl.pm/tarball/master
+cpanm http://github.com/tokuhirom/toktools/tarball/master
+
+# some optional modules
+sudo aptitude install -y psmisc python-dev rsync ruby scons sqlite3 spidermonkey-bin strace subversion sudo telnet traceroute libpng-dev libjpeg-dev libgif-dev unison zip valgrind wamerican whois zlib1g-dev
+sudo aptitude install -y curl autotools-dev emacs23-nox vim lv doxygen ncftp lftp gdb gnupg2 ipython ngrep irb irssi-dev irssi-scripts aspell locate lsof nmap pkg-config libreadline-dev munin
+sudo aptitude install ruby-full mutt
 
 Ubuntu specific
 ==============
@@ -87,3 +95,7 @@ client linux
 
     xorg
     sudo aptitude install uim-xim uim-fep stumpwml
+
+optional things
+===============
+cpanm http://github.com/tokuhirom/Amon/tarball/0.15
