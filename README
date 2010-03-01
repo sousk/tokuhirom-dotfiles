@@ -13,6 +13,17 @@ git clone git://github.com/tokuhirom/tokuhirom-dotfiles.git dotfiles
 cd dotfiles/
 perl link.pl|sh
 
+# build perl(if needed)
+sudo aptitude build-dep perl
+wget http://search.cpan.org/CPAN/authors/id/D/DA/DAPM/perl-5.10.1.tar.gz
+tar xzvf perl-5.10.1.tar.gz
+cd perl-5.10.1
+./Configure -des -Duse64bitint -Dprefix=/usr/local/perl/
+make
+make install
+sudo ln -s /usr/local/perl/bin/perl /usr/local/bin/perl
+sudo ln -s /usr/local/perl/bin/perldoc /usr/local/bin/perldoc
+
 wget http://bit.ly/cpanm
 chmod +x cpanm
 # perl cpanm --sudo local::lib
