@@ -245,10 +245,6 @@ function nytprofgp() {
     echo "http://64p.org/tmp/nytprof/index.html"
 }
 
-function cpan_update () {
-    perl -MCPAN -e 'CPAN::Shell->install(CPAN::Shell->r)'
-}
-
 
 if [ -d ~/public_html/ ]
 then
@@ -264,9 +260,6 @@ function hok () {
     echo "run\nbt" | hok_foo $*
 }
 
-function cpan_upgrade () {
-    perldoc -t perllocal | grep Module | perl -nle '/"Module" (\S+)/ and print $1' | sort -u | xargs cpan
-}
 function perlconf() {
     perl -e 'use Config; use Data::Dumper; print Dumper(\%Config)'|lv 
 }
@@ -281,10 +274,6 @@ function gpath() {
 }
 
 export PERL_AUTOINSTALL="--defaultdeps"
-
-function perl-install-from-meta() {
-    perl -e 'use YAML; print "cpan -i " . join " ", keys %{YAML::LoadFile("META.yml")->{requires}}, "\n"'|zsh
-}
 
 function google() {
     w3m http://google.com
@@ -318,3 +307,4 @@ function alc() {
         echo 'usage: alc word'
     fi
 }
+alias pd=perldoc
