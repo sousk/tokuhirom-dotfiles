@@ -41,6 +41,8 @@
     set fileencodings=utf-8,euc-jp,iso-2022-jp,utf-8,cp932 
     set ambw=double
 
+    filetype plugin on
+
 " -------------------------------------------------------------------------
 " perl
 "
@@ -49,6 +51,31 @@
     iabbrev ,# # =========================================================================
     iabbrev .# # -------------------------------------------------------------------------
 
+    scriptencoding utf-8
+    
+    function! s:get_package_name()
+        let mx = '^\s*package\s\+\([^ ;]\+\)'
+        for line in getline(1, 5)
+            if line =~ mx
+            return substitute(matchstr(line, mx), mx, '\1', '')
+            endif
+        endfor
+        return ""
+    endfunction
+    
+    function! s:check_package_name()
+        let path = substitute(expand('%:p'), '\\', '/', 'g')
+        let name = substitute(s:get_package_name(), '::', '/', 'g') . '.pm'
+        if path[-len(name):] != name
+            echohl WarningMsg
+            echomsg "ぱっけーじめいと、ほぞんされているぱすが、ちがうきがします！"
+            echomsg "ちゃんとなおしてください＞＜"
+            echohl None
+        endif
+    endfunction
+    
+    au! BufWritePost *.pm call s:check_package_name()
+ 
 " -------------------------------------------------------------------------
 " perl test
 "
@@ -86,4 +113,40 @@
 " -------------------------------------------------------------------------
     map ,pt <Esc>:%! perltidy<CR>
     map ,ptv <Esc>:'<,'>! perltidy<CR>
+
+" -------------------------------------------------------------------------
+" neocomplcache
+" -------------------------------------------------------------------------
+    " Use neocomplcache.
+    let g:NeoComplCache_EnableAtStartup = 1
+    " Use smartcase.
+    let g:NeoComplCache_SmartCase = 1
+    " Use camel case completion.
+    let g:NeoComplCache_EnableCamelCaseCompletion = 1
+    " Use underbar completion.
+    let g:NeoComplCache_EnableUnderbarCompletion = 1
+    " Set minimum syntax keyword length.
+    let g:NeoComplCache_MinSyntaxLength = 3
+    " Set manual completion length.
+    let g:NeoComplCache_ManualCompletionStartLength = 0
+
+    " Print caching percent in statusline.
+    "let g:NeoComplCache_CachingPercentInStatusline = 1
+
+    " Define dictionary.
+    let g:NeoComplCache_DictionaryFileTypeLists = {
+                \ 'default' : '',
+                \ 'vimshell' : $HOME.'/.vimshell_hist',
+                \ 'scheme' : $HOME.'/.gosh_completions',
+                \ 'scala' : $DOTVIM.'/dict/scala.dict',
+                \ 'ruby' : $DOTVIM.'/dict/ruby.dict'
+                \ }
+
+    " Define keyword.
+    if !exists('g:NeoComplCache_KeywordPatterns')
+        let g:NeoComplCache_KeywordPatterns = {}
+    endif
+    let g:NeoComplCache_KeywordPatterns['default'] = '\v\h\w*'
+
+    let g:NeoComplCache_SnippetsDir = $HOME.'/snippets'
 
