@@ -57,6 +57,10 @@ if [ -e "/usr/local/app/perl/bin/" ]
 then
 	export PATH="/usr/local/app/perl/bin/:$PATH"
 fi
+if [ -e "/usr/local/app/perl-5.12.0/bin/" ]
+then
+	export PATH="/usr/local/app/perl-5.12.0/bin/:$PATH"
+fi
 export PATH="$HOME/bin:$HOME/local/bin/:/usr/local/bin/:$PATH"
 
 setopt autopushd print_eight_bit
