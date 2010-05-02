@@ -53,6 +53,7 @@ cpanm http://github.com/tokuhirom/task-belike-tokuhirom/tarball/master
 cpanm http://github.com/tokuhirom/oreore-repl.pm/tarball/master
 cpanm http://github.com/tokuhirom/toktools/tarball/master
 cpanm http://github.com/tokuhirom/pmsetup/tarball/master
+cpanm http://github.com/kazuho/kaztools/tarball/master
 cpanm cpan-upload-http
 
 # some optional modules
