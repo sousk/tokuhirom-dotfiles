@@ -14,11 +14,14 @@ cd dotfiles/
 perl link.pl|sh
 
 # build perl(if needed)
+sudo mkdir /usr/local/app/
+sudo chmod 775 /usr/local/app/
+sudo chgrp adm /usr/local/app/
 sudo aptitude build-dep perl
-wget http://search.cpan.org/CPAN/authors/id/D/DA/DAPM/perl-5.10.1.tar.gz
-tar xzvf perl-5.10.1.tar.gz
-cd perl-5.10.1
-./Configure -des -Duse64bitint -Dprefix=/usr/local/perl/
+wget http://search.cpan.org/CPAN/authors/id/J/JE/JESSE/perl-5.12.0.tar.gz
+tar xzvf perl-5.12.0.tar.gz
+cd perl-5.12.0
+./Configure -des -Duse64bitint -Dprefix=/usr/local/app/perl-5.12.0/
 make
 make install
 sudo ln -s /usr/local/perl/bin/perl /usr/local/bin/perl
@@ -108,6 +111,3 @@ client linux
     xorg
     sudo aptitude install uim-xim uim-fep stumpwml
 
-optional things
-===============
-cpanm http://github.com/tokuhirom/Amon/tarball/0.15
