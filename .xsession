@@ -17,4 +17,4 @@ gnome-volume-manager &
 # dropbox start -i &
 update-notifier --startup-delay=60 &
 
-exec /usr/bin/stumpwm
+# exec /usr/bin/stumpwm
