@@ -44,6 +44,24 @@
     filetype plugin on
 
 " -------------------------------------------------------------------------
+" tabs
+" -------------------------------------------------------------------------
+    nnoremap <Space>t t
+    nnoremap <Space>T T
+    nnoremap t <Nop>
+    nnoremap <silent> tc :<C-u>tabnew<CR>:tabmove<CR>
+    nnoremap <silent> tk :<C-u>tabclose<CR>
+    nnoremap <silent> tn :<C-u>tabnext<CR>
+    nnoremap <silent> tp :<C-u>tabprevious<CR>
+    nnoremap <silent> bn :<C-u>bnext<CR>
+    nnoremap <silent> bp :<C-u>bprevious<>
+    nnoremap <silent> bd :<C-u>bdelete<CR>
+    nnoremap <silent> gd :<C-u>bdelete<CR>
+    nnoremap <silent> gn :<C-u>bnext<CR>
+    nnoremap <silent> gp :<C-u>bprevious<CR>
+    for n in range(1,9) | exe "nnoremap <silent> g".n." :buffer ".n."<cr>" | endfor
+
+" -------------------------------------------------------------------------
 " perl
 "
 " -------------------------------------------------------------------------
@@ -150,3 +168,31 @@
 
     let g:NeoComplCache_SnippetsDir = $HOME.'/snippets'
 
+" -------------------------------------------------------------------------
+" package name validation for perl
+" -------------------------------------------------------------------------
+
+scriptencoding utf-8
+
+function! s:get_package_name()
+    let mx = '^\s*package\s\+\([^ ;]\+\)'
+    for line in getline(1, 5)
+    if line =~ mx
+    return substitute(matchstr(line, mx), mx, '\1', '')
+    endif
+    endfor
+    return ""
+endfunction
+
+function! s:check_package_name()
+    let path = substitute(expand('%:p'), '\\', '/', 'g')
+    let name = substitute(s:get_package_name(), '::', '/', 'g') . '.pm'
+    if path[-len(name):] != name
+    echohl WarningMsg
+    echomsg "ぱっけーじめいと、ほぞんされているぱすが、ちがうきがします！"
+    echomsg "ちゃんとなおしてください＞＜"
+    echohl None
+    endif
+endfunction
+
+au! BufWritePost *.pm call s:check_package_name()
