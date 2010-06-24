@@ -37,6 +37,7 @@ autoload -U compinit
 compinit
 
 export PATH="/usr/local/bin/:$PATH"
+export PATH="$HOME/bin:$HOME/local/bin/:$PATH"
 if [ -e "/opt/local/" ];
 then
     export PATH="/opt/local/bin/:/opt/local/sbin/:$PATH"
@@ -61,7 +62,10 @@ if [ -e "/usr/local/app/perl-5.12.0/bin/" ]
 then
 	export PATH="/usr/local/app/perl-5.12.0/bin/:$PATH"
 fi
-export PATH="$HOME/bin:$HOME/local/bin/:/usr/local/bin/:$PATH"
+if [ -e "/usr/local/app/perl-5.12.1/bin/" ]
+then
+	export PATH="/usr/local/app/perl-5.12.1/bin/:$PATH"
+fi
 
 setopt autopushd print_eight_bit
 setopt auto_menu auto_cd correct auto_name_dirs auto_remove_slash
@@ -312,3 +316,9 @@ function alc() {
     fi
 }
 alias pd=perldoc
+alias cpanmf="cpanm --mirror http://cpan.cpantesters.org/"
+
+if [ -f /home/tokuhirom/perl5/perlbrew/etc/bashrc ]; then
+    source /home/tokuhirom/perl5/perlbrew/etc/bashrc
+fi
+
