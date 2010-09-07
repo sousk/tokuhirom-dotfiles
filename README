@@ -18,26 +18,14 @@ sudo mkdir /usr/local/app/
 sudo chmod 775 /usr/local/app/
 sudo chgrp adm /usr/local/app/
 sudo aptitude build-dep perl
-wget http://search.cpan.org/CPAN/authors/id/J/JE/JESSE/perl-5.12.0.tar.gz
-tar xzvf perl-5.12.0.tar.gz
-cd perl-5.12.0
-./Configure -des -Duse64bitint -Dprefix=/usr/local/app/perl-5.12.0/
-make
-make install
-sudo ln -s /usr/local/perl/bin/perl /usr/local/bin/perl
-sudo ln -s /usr/local/perl/bin/perldoc /usr/local/bin/perldoc
+curl -LO http://xrl.us/perlbrew
+perl perlbrew init
+perl perlbrew install
+perl perlbrew install perl-5.13.3
 
-wget http://bit.ly/cpanm
-chmod +x cpanm
-# perl cpanm --sudo local::lib
-# perl -Mlocal::lib >> ~/.zshrc-secret
-# # re-login
-perl cpanm Module::Install
+wget http://cpanmin.us/ -O cpanm
 perl cpanm App::cpanminus
-mkdir -p ~/.cpanm/plugins/
-wget -O ~/.cpanm/plugins/github http://github.com/miyagawa/cpanminus/raw/master/plugins/github
-wget -O ~/.cpanm/plugins/cpanfresh http://cpanfresh.com/miyagawa/cpanminus/raw/master/plugins/cpanfresh
-export PERL_CPANM_DEV=1
+perl cpanm Module::Install
 
 # chsh.
 
@@ -48,10 +36,9 @@ sudo chown tokuhirom /usr/local/app
 
 sudo ln -s /etc/service/ /service
 
-sudo aptitude install libpng-dev libxml2-dev libmysqlclient-dev libssl-dev libgif-dev libjpeg-dev
+sudo aptitude install libpng-dev libxml2-dev libmysqlclient-dev libssl-dev libgif-dev libjpeg-dev libncurses-dev libreadline-dev libexpat-dev
 
 # installing tools
-cpanm github:tokuhirom/myport
 cpanm http://github.com/tokuhirom/task-belike-tokuhirom/tarball/master
 cpanm http://github.com/tokuhirom/oreore-repl.pm/tarball/master
 cpanm http://github.com/tokuhirom/toktools/tarball/master
@@ -74,12 +61,6 @@ https://help.ubuntu.com/community/WebBrowsingSlowIPv6IPv4
 sudo apt-get  build-dep w3m
 sudo aptitude purge kasumi
 
-use ubuntu as X11 Client
-------------------------
-
-sudo aptitude install urxvt
-sudo aptitude install scim-uim uim-skk uim-gtk2.0 uim-xim
-
 remap key
 ---------
 check keycode by `xev`.
@@ -95,9 +76,9 @@ install some native softwares
 - firefox
 - keyremap4macbook
 - aquaskk
-- macports
+- homebrew
 
-instal ports
+install brews
 - git-core +svn
 - wget
 - coreutils
@@ -105,11 +86,10 @@ instal ports
 tig/wig
 ==========
 
-sudo aptitude install rubygems libopenssl-ruby libjson-ruby
+    sudo aptitude install rubygems libopenssl-ruby libjson-ruby
 
 client linux
 =============
 
-    xorg
-    sudo aptitude install uim-xim uim-fep stumpwml
+    sudo aptitude install -y gnome-do ibus-skk vlc language-pack-ja stumpwm rxvt-unicode
 
