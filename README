@@ -91,5 +91,8 @@ tig/wig
 client linux
 =============
 
-    sudo aptitude install -y gnome-do ibus-skk vlc language-pack-ja stumpwm rxvt-unicode
+    sudo aptitude install -y gnome-do ibus-skk vlc language-pack-ja stumpwm rxvt-unicode pidgin
+    sudo aptitude purge evolution gwibber gwibber-service erlang-base
+    # gwibber is too heavy
+
 
