@@ -21,7 +21,7 @@ sudo apt-get build-dep perl
 curl -LO http://xrl.us/perlbrew
 perl perlbrew init
 perl perlbrew install
-perl perlbrew install perl-5.13.3
+perl perlbrew install -v perl-5.12.2
 
 wget http://cpanmin.us/ -O cpanm
 perl cpanm App::cpanminus
