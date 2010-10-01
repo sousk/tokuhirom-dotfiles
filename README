@@ -17,7 +17,7 @@ perl link.pl|sh
 sudo mkdir /usr/local/app/
 sudo chmod 775 /usr/local/app/
 sudo chgrp adm /usr/local/app/
-sudo aptitude build-dep perl
+sudo apt-get build-dep perl
 curl -LO http://xrl.us/perlbrew
 perl perlbrew init
 perl perlbrew install
