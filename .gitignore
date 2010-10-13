@@ -45,3 +45,4 @@ inc/Test/More.pm
 */perltidy.ERR
 *.swp
 .emacs.d/anything-c-adaptive-history
+.emacs.d/.org-id-locations

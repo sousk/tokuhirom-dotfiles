@@ -135,38 +135,45 @@
 " -------------------------------------------------------------------------
 " neocomplcache
 " -------------------------------------------------------------------------
-    " Use neocomplcache.
-    let g:NeoComplCache_EnableAtStartup = 1
-    " Use smartcase.
-    let g:NeoComplCache_SmartCase = 1
-    " Use camel case completion.
-    let g:NeoComplCache_EnableCamelCaseCompletion = 1
-    " Use underbar completion.
-    let g:NeoComplCache_EnableUnderbarCompletion = 1
-    " Set minimum syntax keyword length.
-    let g:NeoComplCache_MinSyntaxLength = 3
-    " Set manual completion length.
-    let g:NeoComplCache_ManualCompletionStartLength = 0
+"   " Use neocomplcache.
+"   let g:NeoComplCache_EnableAtStartup = 1
+"   " Use smartcase.
+"   let g:NeoComplCache_SmartCase = 1
+"   " Use camel case completion.
+"   let g:NeoComplCache_EnableCamelCaseCompletion = 1
+"   " Use underbar completion.
+"   let g:NeoComplCache_EnableUnderbarCompletion = 1
+"   " Set minimum syntax keyword length.
+"   let g:NeoComplCache_MinSyntaxLength = 3
+"   " Set manual completion length.
+"   let g:NeoComplCache_ManualCompletionStartLength = 0
 
-    " Print caching percent in statusline.
-    "let g:NeoComplCache_CachingPercentInStatusline = 1
+"   " Print caching percent in statusline.
+"   "let g:NeoComplCache_CachingPercentInStatusline = 1
 
-    " Define dictionary.
-    let g:NeoComplCache_DictionaryFileTypeLists = {
-                \ 'default' : '',
-                \ 'vimshell' : $HOME.'/.vimshell_hist',
-                \ 'scheme' : $HOME.'/.gosh_completions',
-                \ 'scala' : $DOTVIM.'/dict/scala.dict',
-                \ 'ruby' : $DOTVIM.'/dict/ruby.dict'
-                \ }
+"   " Define dictionary.
+"   let g:NeoComplCache_DictionaryFileTypeLists = {
+"               \ 'default' : '',
+"               \ 'vimshell' : $HOME.'/.vimshell_hist',
+"               \ 'scheme' : $HOME.'/.gosh_completions',
+"               \ 'scala' : $DOTVIM.'/dict/scala.dict',
+"               \ 'ruby' : $DOTVIM.'/dict/ruby.dict'
+"               \ }
 
-    " Define keyword.
-    if !exists('g:NeoComplCache_KeywordPatterns')
-        let g:NeoComplCache_KeywordPatterns = {}
-    endif
-    let g:NeoComplCache_KeywordPatterns['default'] = '\v\h\w*'
+"   " Define keyword.
+"   if !exists('g:NeoComplCache_KeywordPatterns')
+"       let g:NeoComplCache_KeywordPatterns = {}
+"   endif
+"   let g:NeoComplCache_KeywordPatterns['default'] = '\v\h\w*'
 
-    let g:NeoComplCache_SnippetsDir = $HOME.'/snippets'
+"   let g:NeoComplCache_SnippetsDir = $HOME.'/snippets'
+
+" -------------------------------------------------------------------------
+" minibufexpl
+" -------------------------------------------------------------------------
+    let g:miniBufExplMapWindowNavVim = 1
+    let g:miniBufExplMapWindowNavArrows = 1
+    let g:miniBufExplMapCTabSwitchBuffs = 1
 
 " -------------------------------------------------------------------------
 " package name validation for perl
@@ -196,3 +203,30 @@ function! s:check_package_name()
 endfunction
 
 au! BufWritePost *.pm call s:check_package_name()
+
+" -------------------------------------------------------------------------
+" pathogen
+" 
+" see http://subtech.g.hatena.ne.jp/secondlife/20101012/1286886237
+" -------------------------------------------------------------------------
+    call pathogen#runtime_append_all_bundles()
+
+" -------------------------------------------------------------------------
+" fuf.vim
+" -------------------------------------------------------------------------
+    let g:fuf_modesDisable = ['mrucmd']
+    let g:fuf_file_exclude = '\v\~$|\.(o|exe|bak|swp|gif|jpg|png)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
+    let g:fuf_mrufile_exclude = '\v\~$|\.bak$|\.swp|\.howm$|\.(gif|jpg|png)$'
+    let g:fuf_mrufile_maxItem = 10000
+    let g:fuf_enumeratingLimit = 20
+    let g:fuf_keyPreview = '<C-]>'
+    let g:fuf_previewHeight = 0
+
+    nmap bg :FufBuffer<CR>
+    nmap bG :FufFile <C-r>=expand('%:~:.')[:-1-len(expand('%:~:.:t'))]<CR><CR>
+    nmap gb :FufFile **/<CR>
+    nmap br :FufMruFile<CR>
+    nmap bq :FufQuickfix<CR>
+    nmap bl :FufLine<CR>
+    nnoremap <silent> <C-]> :FufTag! <C-r>=expand('<cword>')<CR><CR> 
+
