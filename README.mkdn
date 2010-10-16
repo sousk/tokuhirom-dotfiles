@@ -22,9 +22,8 @@
 
 # setup cpanm
 
-    wget http://cpanmin.us/ -O cpanm
-    perl cpanm App::cpanminus
-    perl cpanm Module::Install
+    curl -LO http://xrl.us/perlbrew | perl - App::cpanminus
+    cpanm Module::Install
 
 # chsh.
 
