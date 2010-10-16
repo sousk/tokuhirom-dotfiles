@@ -94,4 +94,8 @@ client linux
     sudo aptitude purge gbrainy gnome-games-common  gedit
     # gwibber is too heavy
 
+OSX
+===
+
+    brew install bdw-gc bvi coreutils doxygen gist git imagemagick jasper jpeg lha libtiff little-cms lv neon ngrep nkf pkg-config readline scala subversion tree w3m wget
 
