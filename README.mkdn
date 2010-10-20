@@ -1,0 +1,101 @@
+    mkdir ~/share/
+    mkdir ~/dev/
+    mkdir ~/src/
+    mkdir ~/tmp/
+    mkdir ~/local/
+
+    sudo aptitude install -y git-core screen zsh wget unzip nkf w3m gcc binutils-dev bsdutils tree bvi lv libxml2-dev make
+
+    wget http://openlab.jp/skk/skk/dic/SKK-JISYO.L --output-document ~/share/SKK-JISYO.L
+
+    cd ~/share/
+    git clone git://github.com/tokuhirom/tokuhirom-dotfiles.git dotfiles
+    cd dotfiles/
+    perl link.pl|sh
+
+# build perl(if needed)
+    sudo apt-get build-dep perl
+    curl -LO http://xrl.us/perlbrew
+    perl perlbrew init
+    perl perlbrew install
+    perl perlbrew install -v perl-5.12.2
+
+# setup cpanm
+
+    curl -LO http://xrl.us/perlbrew | perl - App::cpanminus
+    cpanm Module::Install
+
+# chsh.
+
+    sudo mkdir /usr/local/app
+    sudo chown tokuhirom /usr/local/app
+
+# re-run zsh
+
+    sudo ln -s /etc/service/ /service
+
+    sudo aptitude install libpng-dev libxml2-dev libmysqlclient-dev libssl-dev libgif-dev libjpeg-dev libncurses-dev libreadline-dev libexpat-dev
+
+# installing tools
+    cpanm http://github.com/tokuhirom/task-belike-tokuhirom/tarball/master
+    cpanm http://github.com/tokuhirom/oreore-repl.pm/tarball/master
+    cpanm http://github.com/tokuhirom/toktools/tarball/master
+    cpanm http://github.com/tokuhirom/pmsetup/tarball/master
+    cpanm http://github.com/kazuho/kaztools/tarball/master
+    cpanm http://github.com/typester/net-github-upload-perl/tarball/master
+    cpanm cpan-upload-http
+
+# some optional modules
+    sudo aptitude install -y psmisc python-dev rsync ruby scons sqlite3 spidermonkey-bin strace subversion sudo telnet traceroute libpng-dev libjpeg-dev libgif-dev unison zip valgrind wamerican whois zlib1g-dev
+    sudo aptitude install -y curl autotools-dev emacs23-nox vim lv doxygen ncftp lftp gdb gnupg2 ipython ngrep irb irssi-dev irssi-scripts aspell locate lsof nmap pkg-config libreadline-dev munin
+    sudo aptitude install ruby-full mutt
+
+Ubuntu specific
+==============
+
+if you got "Looking up ..." is slow, try this:
+https://help.ubuntu.com/community/WebBrowsingSlowIPv6IPv4
+
+    sudo apt-get  build-dep w3m
+    sudo aptitude purge kasumi
+
+remap key
+---------
+check keycode by `xev`.
+
+and edit ~/.Xmodmap such as:
+
+    keycode 33 = grave tilde
+
+OSX
+---
+
+install some native softwares
+- firefox
+- keyremap4macbook
+- aquaskk
+- homebrew
+
+install brews
+- git-core +svn
+- wget
+- coreutils
+
+tig/wig
+==========
+
+    sudo aptitude install rubygems libopenssl-ruby libjson-ruby
+
+client linux
+=============
+
+    sudo aptitude install -y gnome-do ibus-skk vlc language-pack-ja stumpwm rxvt-unicode pidgin
+    sudo aptitude purge evolution gwibber gwibber-service erlang-base empathy-common evolution-common gnome-sudoku evolution-plugins
+    sudo aptitude purge gbrainy gnome-games-common  gedit
+    # gwibber is too heavy
+
+OSX
+===
+
+    brew install bdw-gc bvi coreutils doxygen gist git imagemagick jasper jpeg lha libtiff little-cms lv neon ngrep nkf pkg-config readline scala subversion tree w3m wget
+

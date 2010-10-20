@@ -318,7 +318,7 @@ function alc() {
 alias pd=perldoc
 alias cpanmf="cpanm --mirror http://cpan.cpantesters.org/"
 
-if [ -f /home/tokuhirom/perl5/perlbrew/etc/bashrc ]; then
-    source /home/tokuhirom/perl5/perlbrew/etc/bashrc
+if [ -f $HOME/perl5/perlbrew/etc/bashrc ]; then
+    source $HOME/perl5/perlbrew/etc/bashrc
 fi
 
