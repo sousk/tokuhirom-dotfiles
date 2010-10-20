@@ -7,3 +7,6 @@
 [submodule ".vim/bundle/perldoc-vim"]
 	path = .vim/bundle/perldoc-vim
 	url = git://github.com/hotchpotch/perldoc-vim.git
+[submodule ".vim/bundle/vim-perl"]
+	path = .vim/bundle/vim-perl
+	url = http://github.com/petdance/vim-perl.git
