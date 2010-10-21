@@ -10,3 +10,6 @@
 [submodule ".vim/bundle/vim-perl"]
 	path = .vim/bundle/vim-perl
 	url = http://github.com/petdance/vim-perl.git
+[submodule ".vim/bundle/unite.vim"]
+	path = .vim/bundle/unite.vim
+	url = http://github.com/Shougo/unite.vim.git
