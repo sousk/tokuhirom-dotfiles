@@ -135,6 +135,8 @@
 " -------------------------------------------------------------------------
 " neocomplcache
 " -------------------------------------------------------------------------
+    " enable
+    let g:neocomplcache_enable_at_startup = 1
 "   " Use neocomplcache.
 "   let g:NeoComplCache_EnableAtStartup = 1
 "   " Use smartcase.
