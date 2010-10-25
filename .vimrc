@@ -273,5 +273,7 @@ au! BufWritePost *.pm call s:check_package_name()
 "  unite.vim
 " -------------------------------------------------------------------------
    let g:unite_enable_start_insert = 1
+   " less delay
+   let g:unite_update_time = 80
    nmap bg :Unite -buffer-name=files buffer_tab file_mru file bookmark<CR>
 
