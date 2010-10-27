@@ -22,6 +22,7 @@ my @files = qw(
     .xsession
     .xinitrc
     .zshrc
+    .perl_completions
 );
 
 &main;exit;
