@@ -1,0 +1,8 @@
+Module::Install::XSUtil
+Module::Install::AuthorTests
+Module::Install
+Data::Dumper
+Devel::Peek
+Dump
+selectrow_array
+selectall_arrayref
