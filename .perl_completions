@@ -6,3 +6,16 @@ Devel::Peek
 Dump
 selectrow_array
 selectall_arrayref
+get
+post
+put
+request
+DBIx::Skinny
+DBI
+Text::Xslate
+Tiffany
+single
+search
+SEEK_CUR
+SEEK_END
+SEEK_SET
