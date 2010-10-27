@@ -23,6 +23,7 @@ my @files = qw(
     .xinitrc
     .zshrc
     .perl_completions
+    .xs_completions
 );
 
 &main;exit;

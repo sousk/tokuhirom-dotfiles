@@ -153,6 +153,7 @@
 	let g:neocomplcache_dictionary_filetype_lists = {
 	    \ 'default' : '',
 	    \ 'perl' : $HOME.'/.perl_completions',
+	    \ 'xs' : $HOME.'/.xs_completions',
 	    \ 'vimshell' : $HOME.'/.vimshell_hist',
 	    \ 'scheme' : $HOME.'/.gosh_completions'
 	        \ }
