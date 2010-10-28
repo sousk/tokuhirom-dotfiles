@@ -103,6 +103,12 @@
     autocmd! BufNewFile,BufRead *.psgi setf perl
     augroup END
 
+    au BufRead,BufNewFile Makefile* set noexpandtab
+
+    autocmd BufNewFile *.pl 0r $HOME/.vim/template/perl-script.txt
+    autocmd BufNewFile *.pm 0r $HOME/.vim/template/perl-module.txt
+    autocmd BufNewFile *.t  0r $HOME/.vim/template/perl-test.txt
+
 " -------------------------------------------------------------------
 " auto cd.
 "    ref. http://nanasi.jp/articles/vim/cd_vim.html

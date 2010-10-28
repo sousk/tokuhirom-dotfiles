@@ -19,3 +19,5 @@ search
 SEEK_CUR
 SEEK_END
 SEEK_SET
+cmpthese
+timethese
