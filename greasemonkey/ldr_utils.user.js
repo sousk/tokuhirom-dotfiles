@@ -12,7 +12,7 @@
      var onload  = function(){
          with (w) {
              // hide ads
-             ['ads_top', 'ads_bottom'].forEach(function(v){DOM.hide(v);});
+             ['functionHeader'].forEach(function(v){DOM.hide(v);});
 
              // move total-unread-count into the control box
              var total_unread_count = DOM.clone($('total_unread_count'));
