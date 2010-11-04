@@ -23,7 +23,7 @@
 # setup cpanm
 
     curl -LO http://xrl.us/perlbrew | perl - App::cpanminus
-    cpanm Module::Install
+    cpanm < perl-modules.txt
 
 # chsh.
 
@@ -37,7 +37,6 @@
     sudo aptitude install libpng-dev libxml2-dev libmysqlclient-dev libssl-dev libgif-dev libjpeg-dev libncurses-dev libreadline-dev libexpat-dev
 
 # installing tools
-    cpanm http://github.com/tokuhirom/task-belike-tokuhirom/tarball/master
     cpanm http://github.com/tokuhirom/oreore-repl.pm/tarball/master
     cpanm http://github.com/tokuhirom/toktools/tarball/master
     cpanm http://github.com/tokuhirom/pmsetup/tarball/master
@@ -71,15 +70,23 @@ OSX
 ---
 
 install some native softwares
-- firefox
-- keyremap4macbook
-- aquaskk
-- homebrew
+  * chrome dev channel
+  * firefox
+  * homebrew
+  * keyremap4macbook
+  * aquaskk
+  * skype
+  * adium
+  * OOo
+  * echofon
+  * dropbox
 
 install brews
-- git-core +svn
-- wget
-- coreutils
+
+  brew install git imagemagick uim-fep bvi ngrep sshfs-fuse lha wget valgrid
+  brew install coreutils --default-names
+
+setup time-machine.
 
 tig/wig
 ==========

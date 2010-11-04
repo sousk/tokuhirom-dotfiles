@@ -319,6 +319,11 @@ alias pd=perldoc
 alias cpanmf="cpanm --mirror http://cpan.cpantesters.org/"
 
 if [ -f $HOME/perl5/perlbrew/etc/bashrc ]; then
-    source $HOME/perl5/perlbrew/etc/bashrc
+    # source $HOME/perl5/perlbrew/etc/bashrc
+fi
+
+if [ -d $HOME/perl5/perlbrew/bin/ ]; then
+    export PATH=$HOME/perl5/perlbrew/bin/:$PATH
+    # source $HOME/perl5/perlbrew/etc/bashrc
 fi
 
